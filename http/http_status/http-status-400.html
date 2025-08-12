@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/http/http_status/http-status-400.html">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>4xx — Ошибки клиента - Manual QA docs</title>
+        <link rel="stylesheet" href="../../css/theme.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
+        <script src="../../js/theme.js" defer></script>
+      
+        <script> var base_url = "../.." </script>
+        <script src="../../search/main.js" defer></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+    <header class="header">
+        <a id="nav-toggle" class="pizza">&#9776;</a>
+        <div class="title">
+            <a href="/" class="logo">Manual QA docs </a>
+             
+            <div role="search" class="search">
+                <form><input type="search" placeholder="Search docs" id="mkdocs-search-query" /></form>
+            </div>
+        </div>
+         <a id="nav-scrh" class="scrh">&#8981;</a>
+    </header>
+    <div class="side" id="side">
+        <h2>Page</h2>
+        <ul>
+         
+              <!--
+
+-->
+
+<li >
+    <a href="../../index.html">Home</a>
+</li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    HTTP
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http.html">Введение в HTTP</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http-headers.html">Заголовки HTTP (Headers)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http_methods/main.html">Методы HTTP (Methods)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+  <li>
+    HTTP-статусы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="main.html">Общее о кодах состояния</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="http-status-100.html">1xx — Информационные</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="http-status-200.html">2xx — Успех:</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="http-status-300.html">3xx — Перенаправления</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li class="active">
+    <a href="http-status-400.html">4xx — Ошибки клиента</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="http-status-500.html">5xx — Ошибки сервера</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Основы работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-intro.html">Введение в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-types.html">Типы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/data-formats.html">Форматы данных</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Практика работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-structure.html">Структура запроса в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-params.html">Параметры запроса в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Валидация и тестирование
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-tests.md">Как проверять ответы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-errors.md">Типичные ошибки в API и как их находить</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Полезные инструменты и советы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/openapi.md">Документация API в OpenAPI/Swagger</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-errors.md">Работа с ошибками</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Примеры реальных сценариев
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-registration.md">Регистрация пользователя</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-auth.md">Авторизация и получение токена</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-crud.md">Создание, изменение, удаление данных через API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../api/api-pagination.md">Получение списка с фильтрацией и пагинацией</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/auth-intro.html">Введение в авторизацию</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/tokens.html">Что такое токены</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/basic-auth.html">Basic Auth</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/jwt.html">Bearer Token / JWT</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/oauth2.html">OAuth 2.0</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность (расширение)
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/csrf.md">CSRF</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../../security/ssl-tls.md">SSL/TLS и HTTPS</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+        </ul>
+          <h2>Table Of Contents</h2>
+          <ul id="toc" class="current">
+            
+              <li><a href="#400">400 Ошибки клиента</a></li>
+              
+            
+        </ul>
+        <div class="about">
+            <hr/>
+            Built with 🛠 <a href="https://www.mkdocs.org">MkDocs</a> - 
+            Theme 🖤 <a href="https://github.com/g3xx/mkdocs-github">Github</a>.
+        </div>
+    </div>
+    <div class="spacer"><!-- i am margin --></div>
+    <div class="markdown-body">
+      
+        <div class="prev">
+          
+            <a href="http-status-300.html" title="3xx — Перенаправления">&#8592; Previous Page</a>
+          
+        </div>
+         <div class="next">
+          
+        <a href="http-status-500.html" title="5xx — Ошибки сервера"/>Next Page &#8594;</a>
+          
+        </div>
+      
+      <div class="clear"></div>
+    <div id="mkdocs-search-results"></div>
+
+      
+        <div id="body">
+            <h1 id="400">400 Ошибки клиента</h1>
+<p><strong>400–499 статус коды</strong> — это ошибки клиента. Они означают, что запрос клиента содержит ошибки или не может быть обработан из-за неправильных данных или отсутствия прав.</p>
+<ul>
+<li>
+<p><strong>400 Bad Request</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Запрос от клиента некорректный или не может быть обработан из-за синтаксической ошибки.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При неверном формате запроса, неправильных данных или отсутствующих обязательных параметров.</p>
+</li>
+<li>
+<p><strong>401 Unauthorized</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Запрос требует аутентификации — пользователь не авторизован или не предоставил корректные данные.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При отсутствии или неверных учетных данных (например, токенах).</p>
+</li>
+<li>
+<p><strong>402 Payment Required</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Этот код зарезервирован для будущего использования и обычно не применяется.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Теоретически для платных сервисов, но практически почти не используется.</p>
+</li>
+<li>
+<p><strong>403 Forbidden</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Доступ к ресурсу запрещён, даже если пользователь аутентифицирован.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При отсутствии прав доступа к ресурсу.</p>
+</li>
+<li>
+<p><strong>404 Not Found</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Запрашиваемый ресурс не найден на сервере.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если URL не соответствует ни одному ресурсу.</p>
+</li>
+<li>
+<p><strong>405 Method Not Allowed</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Метод HTTP (GET, POST и т.д.) не разрешён для данного ресурса.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент использует неподдерживаемый метод.</p>
+</li>
+<li>
+<p><strong>406 Not Acceptable</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер не может вернуть содержимое в формате, приемлемом для клиента (согласно заголовкам Accept).</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если сервер не может удовлетворить требуемый формат ответа.</p>
+</li>
+<li>
+<p><strong>407 Proxy Authentication Required</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Требуется аутентификация с прокси-сервером.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Когда клиент должен пройти авторизацию через прокси.</p>
+</li>
+<li>
+<p><strong>408 Request Timeout</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер закрыл соединение, потому что клиент слишком долго не отправлял запрос.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При долгой задержке между запросами.</p>
+</li>
+<li>
+<p><strong>409 Conflict</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Запрос не может быть выполнен из-за конфликта с текущим состоянием ресурса.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Например, при попытке создать дублирующий ресурс или конфликте при редактировании.</p>
+</li>
+<li>
+<p><strong>410 Gone</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Ресурс был удалён и больше не доступен.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Когда ресурс был удалён намеренно и не будет возвращён.</p>
+</li>
+<li>
+<p><strong>411 Length Required</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер требует указания заголовка Content-Length.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент не указал размер тела запроса, а сервер этого требует.</p>
+</li>
+<li>
+<p><strong>412 Precondition Failed</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Условие в заголовках запроса (например, If-Match) не выполнено.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При проверках состояния ресурса перед изменением.</p>
+</li>
+<li>
+<p><strong>413 Payload Too Large</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Размер тела запроса превышает ограничения сервера.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент отправил слишком большой файл или данные.</p>
+</li>
+<li>
+<p><strong>414 URI Too Long</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>URL запроса слишком длинный для обработки сервером.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент передал слишком длинный URL (например, через GET параметры).</p>
+</li>
+<li>
+<p><strong>415 Unsupported Media Type</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер не поддерживает тип медиа данных тела запроса.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если отправлен неподдерживаемый формат (например, сервер ожидает JSON, а пришёл XML).</p>
+</li>
+<li>
+<p><strong>416 Range Not Satisfiable</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Диапазон, указанный в заголовке Range, не может быть удовлетворён.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если запрошенный диапазон выходит за пределы файла.</p>
+</li>
+<li>
+<p><strong>417 Expectation Failed</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер не может выполнить ожидания, указанные в заголовке Expect.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент ожидает 100-continue, а сервер не поддерживает.</p>
+</li>
+<li>
+<p><strong>418 I'm a teapot (шутка)</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Шутливый код из протокола HTCPCP — «Я чайник».</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Юмор, не используется всерьёз.</p>
+</li>
+<li>
+<p><strong>421 Misdirected Request</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Запрос был направлен на сервер, который не может обработать его.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При неправильной маршрутизации запросов.</p>
+</li>
+<li>
+<p><strong>422 Unprocessable Entity (WebDAV)</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер понимает запрос, но не может его обработать из-за семантических ошибок.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Например, при валидации данных.</p>
+</li>
+<li>
+<p><strong>423 Locked (WebDAV)</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Ресурс заблокирован.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При блокировках в WebDAV.</p>
+</li>
+<li>
+<p><strong>424 Failed Dependency (WebDAV)</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Операция не выполнена из-за ошибки в зависимом запросе.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>В цепочке запросов WebDAV.</p>
+</li>
+<li>
+<p><strong>425 Too Early</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер не готов обрабатывать повторный запрос.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При предотвращении повторных действий.</p>
+</li>
+<li>
+<p><strong>426 Upgrade Required</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Клиент должен перейти на другой протокол, указанный сервером.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Например, переход на TLS.</p>
+</li>
+<li>
+<p><strong>428 Precondition Required</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Сервер требует предусловия в запросе (например, заголовки If-Match).</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Чтобы избежать гонок при обновлении ресурсов.</p>
+</li>
+<li>
+<p><strong>429 Too Many Requests</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Клиент превысил лимит запросов.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>При защите от DDoS и лимитах API.</p>
+</li>
+<li>
+<p><strong>431 Request Header Fields Too Large</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Заголовки запроса слишком большие для обработки сервером.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Если клиент отправил слишком большие заголовки.</p>
+</li>
+<li>
+<p><strong>451 Unavailable For Legal Reasons</strong></p>
+<p><strong><em>*За что отвечает:</em></strong>*</p>
+<p>Доступ к ресурсу запрещён по юридическим причинам.</p>
+<p><strong><em>*Когда используется:</em></strong>*</p>
+<p>Например, по решению суда или цензуре.</p>
+</li>
+</ul>
+        </div>
+      
+      <hr/>
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2025-08-12 00:34:21.168464+00:00
+  -->
+</div>
+</body>
+</html>

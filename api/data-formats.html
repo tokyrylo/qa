@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/data-formats.html">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Форматы данных - Manual QA docs</title>
+        <link rel="stylesheet" href="../css/theme.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
+        <script src="../js/theme.js" defer></script>
+      
+        <script> var base_url = ".." </script>
+        <script src="../search/main.js" defer></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+    <header class="header">
+        <a id="nav-toggle" class="pizza">&#9776;</a>
+        <div class="title">
+            <a href="/" class="logo">Manual QA docs </a>
+             
+            <div role="search" class="search">
+                <form><input type="search" placeholder="Search docs" id="mkdocs-search-query" /></form>
+            </div>
+        </div>
+         <a id="nav-scrh" class="scrh">&#8981;</a>
+    </header>
+    <div class="side" id="side">
+        <h2>Page</h2>
+        <ul>
+         
+              <!--
+
+-->
+
+<li >
+    <a href="../index.html">Home</a>
+</li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    HTTP
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http.html">Введение в HTTP</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http-headers.html">Заголовки HTTP (Headers)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_methods/main.html">Методы HTTP (Methods)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+  <li>
+    HTTP-статусы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/main.html">Общее о кодах состояния</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-100.html">1xx — Информационные</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-200.html">2xx — Успех:</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-300.html">3xx — Перенаправления</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-400.html">4xx — Ошибки клиента</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-500.html">5xx — Ошибки сервера</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Основы работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-intro.html">Введение в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-types.html">Типы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li class="active">
+    <a href="data-formats.html">Форматы данных</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Практика работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-structure.html">Структура запроса в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-params.html">Параметры запроса в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Валидация и тестирование
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-tests.md">Как проверять ответы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.md">Типичные ошибки в API и как их находить</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Полезные инструменты и советы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="openapi.md">Документация API в OpenAPI/Swagger</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.md">Работа с ошибками</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Примеры реальных сценариев
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-registration.md">Регистрация пользователя</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-auth.md">Авторизация и получение токена</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-crud.md">Создание, изменение, удаление данных через API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-pagination.md">Получение списка с фильтрацией и пагинацией</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/auth-intro.html">Введение в авторизацию</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/tokens.html">Что такое токены</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/basic-auth.html">Basic Auth</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/jwt.html">Bearer Token / JWT</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/oauth2.html">OAuth 2.0</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность (расширение)
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/csrf.md">CSRF</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/ssl-tls.md">SSL/TLS и HTTPS</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+        </ul>
+          <h2>Table Of Contents</h2>
+          <ul id="toc" class="current">
+            
+              <li><a href="#api">Форматы данных в API</a></li>
+              
+            
+        </ul>
+        <div class="about">
+            <hr/>
+            Built with 🛠 <a href="https://www.mkdocs.org">MkDocs</a> - 
+            Theme 🖤 <a href="https://github.com/g3xx/mkdocs-github">Github</a>.
+        </div>
+    </div>
+    <div class="spacer"><!-- i am margin --></div>
+    <div class="markdown-body">
+      
+        <div class="prev">
+          
+            <a href="api-types.html" title="Типы API">&#8592; Previous Page</a>
+          
+        </div>
+         <div class="next">
+          
+        <a href="api-practice.html" title="Как делать запросы в API"/>Next Page &#8594;</a>
+          
+        </div>
+      
+      <div class="clear"></div>
+    <div id="mkdocs-search-results"></div>
+
+      
+        <div id="body">
+            <h1 id="api">Форматы данных в API</h1>
+<p>Когда клиент (например, браузер или мобильное приложение) общается с сервером через API, они обмениваются данными. Эти данные должны быть в определённом формате, чтобы обе стороны понимали друг друга.
+Основные форматы данных</p>
+<ol>
+<li>
+<p><strong>JSON (JavaScript Object Notation)</strong>:</p>
+<ul>
+<li>
+<p>Самый популярный формат для обмена данными в API.</p>
+</li>
+<li>
+<p>Похож на простой текст, который легко читать и писать человеку и компьютеру.</p>
+</li>
+<li>
+<p>Использует структуру ключ-значение (словари и списки).</p>
+</li>
+<li>
+<p>Поддерживается почти во всех языках программирования.</p>
+</li>
+</ul>
+<p><strong>Пример JSON:</strong></p>
+</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Иван&quot;,
+  &quot;age&quot;: 30,
+  &quot;languages&quot;: [&quot;Русский&quot;, &quot;Английский&quot;]
+}
+</code></pre>
+<ol>
+<li>
+<p><strong>XML (eXtensible Markup Language)</strong>:</p>
+<ul>
+<li>
+<p>Старый формат, который выглядит как набор тегов (похож на <code>HTML</code>).</p>
+</li>
+<li>
+<p>Читается и пишется сложнее, чем <code>JSON</code>.</p>
+</li>
+<li>
+<p>Часто используется в <code>SOAP API</code> и старых системах.</p>
+</li>
+</ul>
+<p><strong>Пример XML:</strong></p>
+</li>
+</ol>
+<pre><code class="language-xml">&lt;Person&gt;
+  &lt;Name&gt;Иван&lt;/Name&gt;
+  &lt;Age&gt;30&lt;/Age&gt;
+  &lt;Languages&gt;
+    &lt;Language&gt;Русский&lt;/Language&gt;
+    &lt;Language&gt;Английский&lt;/Language&gt;
+  &lt;/Languages&gt;
+&lt;/Person&gt;
+</code></pre>
+<ol>
+<li>
+<p><strong>Form Data (application/x-www-form-urlencoded)</strong>:</p>
+<ul>
+<li>
+<p>Формат, который похож на строку с парами "ключ=значение", разделёнными амперсандом (&amp;).</p>
+</li>
+<li>
+<p>Часто используется для отправки данных из HTML-форм.</p>
+</li>
+<li>
+<p>Менее удобен для сложных структур.</p>
+</li>
+</ul>
+<p><strong>Пример</strong>:</p>
+</li>
+</ol>
+<pre><code>name=Ivan&amp;age=30&amp;languages=Russian&amp;languages=English
+</code></pre>
+<ol>
+<li>
+<p><strong>Multipart/Form-Data</strong>:</p>
+<ul>
+<li>
+<p>Используется, когда нужно отправить файлы вместе с данными (например, фото или документы).</p>
+</li>
+<li>
+<p>Разделяет данные на части с заголовками, чтобы сервер понимал, где файл, а где обычные данные.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Почему это важно знать QA?</strong></p>
+<ul>
+<li>
+<p>Чтобы правильно читать и проверять запросы и ответы API.</p>
+</li>
+<li>
+<p>Чтобы понимать, как сервер обрабатывает данные и что ожидать в ответе.</p>
+</li>
+<li>
+<p>Для написания тестов и автоматизации, особенно при проверке форматов и структуры данных.</p>
+</li>
+</ul>
+<p><strong>Как узнать формат данных?</strong></p>
+<p>В HTTP-запросах и ответах формат указывается в заголовке <code>Content-Type</code>, например:</p>
+<ul>
+<li>
+<p><code>application/json</code> — <code>JSON</code></p>
+</li>
+<li>
+<p><code>application/xml</code> — <code>XML</code></p>
+</li>
+<li>
+<p><code>application/x-www-form-urlencoded</code> — форма</p>
+</li>
+<li>
+<p><code>multipart/form-data</code> — файлы и форма</p>
+</li>
+</ul>
+        </div>
+      
+      <hr/>
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2025-08-12 00:34:21.161905+00:00
+  -->
+</div>
+</body>
+</html>
