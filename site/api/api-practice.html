@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Как делать запросы в API - Manual QA docs</title>
+        <link rel="stylesheet" href="../css/theme.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
+        <script src="../js/theme.js" defer></script>
+      
+        <script> var base_url = ".." </script>
+        <script src="../search/main.js" defer></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+    <header class="header">
+        <a id="nav-toggle" class="pizza">&#9776;</a>
+        <div class="title">
+            <a href="/" class="logo">Manual QA docs </a>
+             
+            <div role="search" class="search">
+                <form><input type="search" placeholder="Search docs" id="mkdocs-search-query" /></form>
+            </div>
+        </div>
+         <a id="nav-scrh" class="scrh">&#8981;</a>
+    </header>
+    <div class="side" id="side">
+        <h2>Page</h2>
+        <ul>
+         
+              <!--
+
+-->
+
+<li >
+    <a href="../index.html">Home</a>
+</li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    HTTP
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http.html">Введение в HTTP</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http-headers.html">Заголовки HTTP (Headers)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_methods/main.html">Методы HTTP (Methods)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+  <li>
+    HTTP-статусы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/main.html">Общее о кодах состояния</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-100.html">1xx — Информационные</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-200.html">2xx — Успех:</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-300.html">3xx — Перенаправления</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-400.html">4xx — Ошибки клиента</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-500.html">5xx — Ошибки сервера</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Основы работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-intro.html">Введение в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-types.html">Типы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="data-formats.html">Форматы данных</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Практика работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li class="active">
+    <a href="api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-structure.html">Структура запроса в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-params.html">Параметры запроса в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Валидация и тестирование
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-tests.md">Как проверять ответы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.md">Типичные ошибки в API и как их находить</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li class="active">
+    <a href="api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Полезные инструменты и советы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="openapi.md">Документация API в OpenAPI/Swagger</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.md">Работа с ошибками</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Примеры реальных сценариев
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-registration.md">Регистрация пользователя</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-auth.md">Авторизация и получение токена</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-crud.md">Создание, изменение, удаление данных через API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-pagination.md">Получение списка с фильтрацией и пагинацией</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/auth-intro.html">Введение в авторизацию</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/tokens.html">Что такое токены</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/basic-auth.html">Basic Auth</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/jwt.html">Bearer Token / JWT</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/oauth2.html">OAuth 2.0</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность (расширение)
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/csrf.md">CSRF</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/ssl-tls.md">SSL/TLS и HTTPS</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+        </ul>
+          <h2>Table Of Contents</h2>
+          <ul id="toc" class="current">
+            
+              <li><a href="#api">Как делать запросы к API — инструменты</a></li>
+              
+            
+        </ul>
+        <div class="about">
+            <hr/>
+            Built with 🛠 <a href="https://www.mkdocs.org">MkDocs</a> - 
+            Theme 🖤 <a href="https://github.com/g3xx/mkdocs-github">Github</a>.
+        </div>
+    </div>
+    <div class="spacer"><!-- i am margin --></div>
+    <div class="markdown-body">
+      
+        <div class="prev">
+          
+            <a href="api-params.html" title="Параметры запроса в API">&#8592; Previous Page</a>
+          
+        </div>
+         <div class="next">
+          
+        <a href="../security/auth-intro.html" title="Введение в авторизацию"/>Next Page &#8594;</a>
+          
+        </div>
+      
+      <div class="clear"></div>
+    <div id="mkdocs-search-results"></div>
+
+      
+        <div id="body">
+            <h1 id="api">Как делать запросы к API — инструменты</h1>
+<p><code>API</code> — это интерфейс для общения программ и приложений. Чтобы с ним работать, нужно уметь отправлять запросы и получать ответы. Для этого используют специальные инструменты.
+Популярные инструменты для работы с API</p>
+<ol>
+<li>
+<p><strong>Postman</strong>:</p>
+<ul>
+<li>
+<p>Графический инструмент с удобным интерфейсом.</p>
+</li>
+<li>
+<p>Позволяет создавать и отправлять запросы разных типов (<code>GET</code>, <code>POST</code>, <code>PUT</code> и др.).</p>
+</li>
+<li>
+<p>Можно сохранять запросы, группировать их, создавать сценарии тестирования.</p>
+</li>
+<li>
+<p>Подходит и новичкам, и опытным тестировщикам.</p>
+</li>
+</ul>
+<p><strong>Пример:</strong></p>
+<ul>
+<li>
+<p>Вводишь URL и метод запроса.</p>
+</li>
+<li>
+<p>Добавляешь заголовки и тело (если нужно).</p>
+</li>
+<li>
+<p>Нажимаешь кнопку «Send» и смотришь ответ сервера.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>curl</strong>:</p>
+<ul>
+<li>
+<p>Утилита командной строки для отправки HTTP-запросов.</p>
+</li>
+<li>
+<p>Очень мощная и гибкая, работает в терминале Linux, macOS и Windows (через WSL или PowerShell).</p>
+</li>
+<li>
+<p>Подходит для быстрого тестирования и автоматизации.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Пример команды</strong>:</p>
+<pre><code class="language-json">curl -X GET https://api.example.com/users/123
+</code></pre>
+<ol>
+<li>
+<p><strong>Insomnia</strong>:</p>
+<ul>
+<li>
+<p>Ещё один удобный графический клиент для API.</p>
+</li>
+<li>
+<p>Похож на Postman, но с другим интерфейсом.</p>
+</li>
+<li>
+<p>Поддерживает REST, GraphQL и другие типы API.</p>
+</li>
+<li>
+<p>Есть возможности для создания переменных и сценариев.</p>
+</li>
+</ul>
+</li>
+</ol>
+        </div>
+      
+      <hr/>
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2025-08-12 00:26:17.137011+00:00
+  -->
+</div>
+</body>
+</html>
