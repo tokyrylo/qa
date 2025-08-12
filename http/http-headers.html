@@ -444,6 +444,9 @@
               <li><a href="#http-">HTTP-заголовки — как записка на подносе в ресторане</a></li>
               
             
+              <li><a href="#http">Примеры из реального HTTP</a></li>
+              
+            
         </ul>
         <div class="about">
             <hr/>
@@ -519,12 +522,65 @@ HTTP-заголовки — это записка, которую официан
 <p>"Сегодняшний шеф — Антонио" → <code>Server: Antonio-1.0</code></p>
 </li>
 </ul>
+<h1 id="http">Примеры из реального HTTP</h1>
+<p>Когда мы говорим про заголовки в интернете, они на самом деле выглядят примерно так:</p>
+<p><strong>Пример HTTP-запроса (от клиента к серверу)</strong></p>
+<pre><code class="language-json">GET /menu HTTP/1.1
+Host: restaurant.example.com
+Accept-Language: ru
+Accept: text/html
+Cookie: table=5
+User-Agent: Mozilla/5.0
+</code></pre>
+<p><strong>🔍 Разбор</strong>:</p>
+<ul>
+<li>
+<p><code>GET /menu</code> — клиент просит меню.</p>
+</li>
+<li>
+<p><code>Host</code> — адрес ресторана.</p>
+</li>
+<li>
+<p><code>Accept-Language: ru</code> — просим меню на русском.</p>
+</li>
+<li>
+<p><code>Cookie: table=5</code> — мы за столиком №5.</p>
+</li>
+<li>
+<p><code>User-Agent</code> — информация о «госте» (браузере).</p>
+</li>
+</ul>
+<p><strong>Пример HTTP-ответа (от сервера к клиенту)</strong></p>
+<pre><code class="language-json">HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Server: Antonio-1.0
+Set-Cookie: dessert=cheesecake; Path=/
+Cache-Control: no-cache
+</code></pre>
+<p><strong>🔍 Разбор</strong>:</p>
+<ul>
+<li>
+<p><code>200 OK</code> — заказ принят и еда уже на подходе.</p>
+</li>
+<li>
+<p><code>Content-Type</code> — подают блюдо в формате HTML.</p>
+</li>
+<li>
+<p><code>Server</code> — кухня под управлением шефа Антонио.</p>
+</li>
+<li>
+<p><code>Set-Cookie</code> — официант запомнил, что вы любите чизкейк.</p>
+</li>
+<li>
+<p><code>Cache-Control</code> — не хранить этот заказ на потом, всегда готовить свежий.</p>
+</li>
+</ul>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-12 00:34:21.162926+00:00
+  Docs Build Date UTC : 2025-08-12 06:47:05.378817+00:00
   -->
 </div>
 </body>
