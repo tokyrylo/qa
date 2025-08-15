@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-versioning.html">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Версионирование API - Manual QA docs</title>
+        <link rel="stylesheet" href="../css/theme.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
+        <script src="../js/theme.js" defer></script>
+      
+        <script> var base_url = ".." </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+ <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body>
+    <header class="header">
+        <a id="nav-toggle" class="pizza">&#9776;</a>
+        <div class="title">
+            <a href="/" class="logo">Manual QA docs </a>
+             
+            <div role="search" class="search">
+                <form><input type="search" placeholder="Search docs" id="mkdocs-search-query" /></form>
+            </div>
+        </div>
+         <a id="nav-scrh" class="scrh">&#8981;</a>
+    </header>
+    <div class="side" id="side">
+        <h2>Page</h2>
+        <ul>
+         
+              <!--
+
+-->
+
+<li >
+    <a href="../index.html">Home</a>
+</li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    HTTP
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http.html">Введение в HTTP</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http-headers.html">Заголовки HTTP (Headers)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_methods/main.html">Методы HTTP (Methods)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+  <li>
+    HTTP-статусы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/main.html">Общее о кодах состояния</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-100.html">1xx — Информационные</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-200.html">2xx — Успех:</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-300.html">3xx — Перенаправления</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-400.html">4xx — Ошибки клиента</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../http/http_status/http-status-500.html">5xx — Ошибки сервера</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Основы работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-intro.html">Введение в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-types.html">Типы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="data-formats.html">Форматы данных</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-logging.html">Логирование и мониторинг</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li class="active">
+    <a href="api-versioning.html">Версионирование API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Практика работы с API
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-practice.html">Как делать запросы в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-structure.html">Структура запроса в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-params.html">Параметры запроса в API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-test-data.html">Работа с тестовыми данными</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-limits.html">Проверка ограничений API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-timeouts.html">Тестирование ошибок сети и таймаутов</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Валидация и тестирование
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-tests.html">Как проверять ответы API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.html">Типичные ошибки в API и как их находить</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-schema-validation.html">Проверка схем данных (JSON Schema / OpenAPI)</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-data-validation.html">Проверка согласованности данных</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-checklists.html">Чеклисты QA для эндпоинтов</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Полезные инструменты и советы
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="openapi.html">Документация API в OpenAPI/Swagger</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-diff.html">Diff-инструменты</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-automation.html">Инструменты для автоматизации тестов</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-mock.html">Mock-серверы и симуляция API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-errors.html">Типичные ошибки в API и как их находить</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Примеры реальных сценариев
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-registration.html">Регистрация пользователя</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-auth.html">Авторизация и получение токена</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-crud.md">Создание, изменение, удаление данных через API</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="api-pagination.md">Получение списка с фильтрацией и пагинацией</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/auth-intro.html">Введение в авторизацию</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/tokens.html">Что такое токены</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/basic-auth.html">Basic Auth</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/jwt.html">Bearer Token / JWT</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/oauth2.html">OAuth 2.0</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+              <!--
+
+-->
+
+  <li>
+    Безопасность (расширение)
+    <ul>
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/csrf.md">CSRF</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/ssl-tls.md">SSL/TLS и HTTPS</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/api-roles.md">Тестирование ролей и доступа</a>
+</li>
+
+        
+            <!--
+
+-->
+
+<li >
+    <a href="../security/api-vulnerabilities.html">Проверка уязвимостей API</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+         
+        </ul>
+          <h2>Table Of Contents</h2>
+          <ul id="toc" class="current">
+            
+              <li><a href="#api">📌 Версионирование API</a></li>
+              
+                  <li class="child"><a href="#_1">🔹 Зачем нужно версионирование</a></li>
+              
+                  <li class="child"><a href="#_2">🔹 Форматы версионирования</a></li>
+              
+                  <li class="child"><a href="#qa-api">🔹 Роль QA в версионировании API</a></li>
+              
+                  <li class="child"><a href="#qa">🔹 Чеклист для QA</a></li>
+              
+                  <li class="child"><a href="#_4">🔹 Пример для тестирования</a></li>
+              
+                  <li class="child"><a href="#_5">🔍 Как использовать таблицу</a></li>
+              
+            
+              <li><a href="#api_1">✅ Чеклист проверки обратной совместимости API</a></li>
+              
+                  <li class="child"><a href="#1">1. 📄 Документация и спецификация</a></li>
+              
+                  <li class="child"><a href="#2">2. 🔄 Эндпоинты и маршруты</a></li>
+              
+                  <li class="child"><a href="#3-json-schema">3. 📦 Структура данных (JSON Schema)</a></li>
+              
+                  <li class="child"><a href="#4">4. ⚙️ Параметры запросов</a></li>
+              
+                  <li class="child"><a href="#5">5. 🔐 Авторизация и безопасность</a></li>
+              
+                  <li class="child"><a href="#6">6. 📊 Производительность и лимиты</a></li>
+              
+                  <li class="child"><a href="#7">7. 🧪 Тестирование на основе таблицы изменений</a></li>
+              
+            
+        </ul>
+        <div class="about">
+            <hr/>
+            Built with 🛠 <a href="https://www.mkdocs.org">MkDocs</a> - 
+            Theme 🖤 <a href="https://github.com/g3xx/mkdocs-github">Github</a>.
+        </div>
+    </div>
+    <div class="spacer"><!-- i am margin --></div>
+    <div class="markdown-body">
+      
+        <div class="prev">
+          
+            <a href="api-logging.html" title="Логирование и мониторинг">&#8592; Previous Page</a>
+          
+        </div>
+         <div class="next">
+          
+        <a href="api-practice.html" title="Как делать запросы в API"/>Next Page &#8594;</a>
+          
+        </div>
+      
+      <div class="clear"></div>
+    <div id="mkdocs-search-results"></div>
+
+      
+        <div id="body">
+            <h1 id="api">📌 Версионирование API</h1>
+<p><strong>Версионирование API</strong> — это практика управления изменениями в API с помощью указания версии, чтобы изменения не ломали работу существующих клиентов.</p>
+<hr />
+<h2 id="_1">🔹 Зачем нужно версионирование</h2>
+<ul>
+<li>✅ Обеспечивает <strong>обратную совместимость</strong> — старые клиенты продолжают работать.</li>
+<li>✅ Позволяет <strong>постепенно внедрять новые функции</strong> без сбоев.</li>
+<li>✅ Упрощает <strong>поддержку и отладку</strong> разных версий.</li>
+</ul>
+<hr />
+<h2 id="_2">🔹 Форматы версионирования</h2>
+<ol>
+<li><strong>В URL (наиболее распространённый способ)</strong>  </li>
+</ol>
+<pre><code class="language-url">https://api.example.com/v1/users
+https://api.example.com/v2/users
+</code></pre>
+<p>➡ Плюсы: просто, наглядно.<br />
+➡ Минусы: приходится дублировать код.</p>
+<ol>
+<li><strong>В заголовках</strong>  </li>
+</ol>
+<pre><code class="language-json">GET /users HTTP/1.1
+Host: api.example.com
+Accept: application/vnd.example.v2+json
+</code></pre>
+<p>➡ Плюсы: URL остаётся чистым.<br />
+➡ Минусы: сложнее тестировать вручную.</p>
+<ol>
+<li><strong>Через параметры запроса (редко)</strong>  </li>
+</ol>
+<pre><code class="language-url">https://api.example.com/users?version=2
+</code></pre>
+<p>➡ Минусы: обычно не рекомендуется, т.к. легко сломать кэширование.</p>
+<hr />
+<h2 id="qa-api">🔹 Роль QA в версионировании API</h2>
+<h3 id="_3">Что тестировать:</h3>
+<ul>
+<li>[ ] Поддержку <strong>нескольких версий API</strong> параллельно.</li>
+<li>[ ] Обратную совместимость:  </li>
+<li>Старые клиенты работают с новой версией API.  </li>
+<li>Новые клиенты могут обращаться к старой версии без ошибок.</li>
+<li>[ ] Корректность документации — каждая версия должна иметь <strong>своё описание</strong>.</li>
+<li>[ ] Актуальность эндпоинтов: устаревшие методы должны быть помечены как <code>deprecated</code>.</li>
+</ul>
+<hr />
+<h2 id="qa">🔹 Чеклист для QA</h2>
+<ul>
+<li>[ ] Есть чёткое обозначение версии (в URL, заголовках или параметрах).</li>
+<li>[ ] При обновлении версии изменения задокументированы.</li>
+<li>[ ] Старые версии работают до даты их удаления.</li>
+<li>[ ] Клиенты получают понятную ошибку при обращении к неподдерживаемой версии (например, <code>410 Gone</code>).</li>
+<li>[ ] В Swagger / OpenAPI есть отдельные схемы для разных версий.</li>
+</ul>
+<hr />
+<h2 id="_4">🔹 Пример для тестирования</h2>
+<p><strong>Запрос к v1:</strong></p>
+<pre><code class="language-http">GET /api/v1/users HTTP/1.1
+Host: localhost:8000
+</code></pre>
+<p><strong>Запрос к v2:</strong></p>
+<pre><code class="language-http">GET /api/v2/users HTTP/1.1
+Host: localhost:8000
+</code></pre>
+<p><strong>Проверить:</strong></p>
+<ul>
+<li>
+<p>Ответы соответствуют документации каждой версии.</p>
+</li>
+<li>
+<p>Формат <code>JSON</code> одинаковый или описаны изменения.</p>
+</li>
+<li>
+<p>Нет неожиданного изменения полей.</p>
+</li>
+</ul>
+<p><strong>💡 Совет для QA:</strong>
+При тестировании версионирования полезно держать два набора тестов — для текущей и новой версии, чтобы быстро находить несовместимости.</p>
+<table>
+<thead>
+<tr>
+<th>Эндпоинт</th>
+<th>Версия v1</th>
+<th>Версия v2</th>
+<th>Изменение / комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/users</code></td>
+<td>Возвращает <code>id</code>, <code>name</code>, <code>email</code></td>
+<td>Возвращает <code>id</code>, <code>full_name</code>, <code>email</code></td>
+<td>Поле <code>name</code> заменено на <code>full_name</code></td>
+</tr>
+<tr>
+<td><code>/api/v1/orders</code></td>
+<td>Параметр <code>status</code> (string)</td>
+<td>Параметр <code>status</code> (enum: <code>pending</code>, <code>done</code>)</td>
+<td>Добавлена валидация значения</td>
+</tr>
+<tr>
+<td><code>/api/v1/products</code></td>
+<td>Пагинация через <code>page</code>, <code>limit</code></td>
+<td>Пагинация через <code>offset</code>, <code>limit</code></td>
+<td>Изменён способ пагинации</td>
+</tr>
+<tr>
+<td><code>/api/v1/login</code></td>
+<td>Возвращает <code>token</code></td>
+<td>Возвращает <code>access_token</code>, <code>refresh_token</code></td>
+<td>Добавлен refresh-токен</td>
+</tr>
+<tr>
+<td><code>/api/v1/register</code></td>
+<td>Поле <code>username</code> обязательное</td>
+<td>Поле <code>username</code> необязательное</td>
+<td>Логика регистрации изменена</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">🔍 Как использовать таблицу</h2>
+<ol>
+<li><strong>Перед тестированием новой версии</strong> — пробежать глазами изменения и составить список тест-кейсов.</li>
+<li><strong>При регрессионном тестировании</strong> — убедиться, что старое поведение не нарушено (если не указано обратное).</li>
+<li><strong>Для автоматизации</strong> — можно генерировать тесты на основе этой таблицы, чтобы проверять поля и параметры.</li>
+</ol>
+<hr />
+<p>💡 <strong>Совет:</strong><br />
+Ведение такой таблицы особенно важно в проектах с частыми релизами API — она экономит время и помогает избежать пропуска изменений.</p>
+<h1 id="api_1">✅ Чеклист проверки обратной совместимости API</h1>
+<h2 id="1">1. 📄 Документация и спецификация</h2>
+<ul>
+<li>[ ] Сверить новую версию API с документацией (OpenAPI/Swagger).</li>
+<li>[ ] Проверить, что устаревшие поля и эндпоинты помечены как <strong>deprecated</strong>.</li>
+<li>[ ] Убедиться, что примеры в документации соответствуют реальным ответам сервера.</li>
+</ul>
+<hr />
+<h2 id="2">2. 🔄 Эндпоинты и маршруты</h2>
+<ul>
+<li>[ ] Все существующие эндпоинты старой версии возвращают корректный HTTP-статус.</li>
+<li>[ ] Если эндпоинт был удалён — есть сообщение об ошибке с указанием новой версии/маршрута.</li>
+<li>[ ] Нет неожиданных изменений в именах эндпоинтов (например, <code>/users</code> → <code>/user</code>).</li>
+</ul>
+<hr />
+<h2 id="3-json-schema">3. 📦 Структура данных (JSON Schema)</h2>
+<ul>
+<li>[ ] Все обязательные поля в ответах остались без изменений.</li>
+<li>[ ] Изменения полей задокументированы (например, <code>name</code> → <code>full_name</code>).</li>
+<li>[ ] Новые поля не ломают парсинг старых клиентов.</li>
+<li>[ ] Типы данных не изменились (string → integer и т. д.).</li>
+</ul>
+<hr />
+<h2 id="4">4. ⚙️ Параметры запросов</h2>
+<ul>
+<li>[ ] Все старые параметры запроса поддерживаются.</li>
+<li>[ ] Значения параметров не изменили допустимый диапазон или формат.</li>
+<li>[ ] Если параметры были удалены — API возвращает понятную ошибку.</li>
+</ul>
+<hr />
+<h2 id="5">5. 🔐 Авторизация и безопасность</h2>
+<ul>
+<li>[ ] Способ авторизации остался рабочим (Bearer Token, JWT и т. д.).</li>
+<li>[ ] Нет изменений в формате токена.</li>
+<li>[ ] При попытке авторизации старым способом возвращается понятная ошибка.</li>
+</ul>
+<hr />
+<h2 id="6">6. 📊 Производительность и лимиты</h2>
+<ul>
+<li>[ ] Лимиты запросов (rate limit) не изменились без предупреждения.</li>
+<li>[ ] Нет неожиданного роста времени ответа API.</li>
+<li>[ ] Пагинация работает так же, как в предыдущей версии (если не было изменения в таблице изменений).</li>
+</ul>
+<hr />
+<h2 id="7">7. 🧪 Тестирование на основе таблицы изменений</h2>
+<ul>
+<li>[ ] Пройтись по каждому изменению в таблице и протестировать старое и новое поведение.</li>
+<li>[ ] Сравнить ответы API с эталонными (Diff-инструментами, например, Postman или JSONDiff).</li>
+<li>[ ] Зафиксировать несовместимые изменения в баг-трекере.</li>
+</ul>
+<hr />
+<p>💡 <strong>Совет:</strong><br />
+При большом API удобно автоматизировать этот чеклист с помощью Postman Collection Runner или Newman, чтобы проверять старую и новую версию API параллельно.</p>
+        </div>
+      
+      <hr/>
+  <!--
+  MkDocs version      : 1.6.1
+  Docs Build Date UTC : 2025-08-15 01:55:08.528683+00:00
+  -->
+</div>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+</script></body>
+</html>
