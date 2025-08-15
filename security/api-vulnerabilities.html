@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/http/http.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/security/api-vulnerabilities.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Введение в HTTP - Manual QA docs</title>
+        <title>Проверка уязвимостей API - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -65,8 +65,8 @@
 
 -->
 
-<li class="active">
-    <a href="http.html">Введение в HTTP</a>
+<li >
+    <a href="../http/http.html">Введение в HTTP</a>
 </li>
 
         
@@ -75,7 +75,7 @@
 -->
 
 <li >
-    <a href="http-headers.html">Заголовки HTTP (Headers)</a>
+    <a href="../http/http-headers.html">Заголовки HTTP (Headers)</a>
 </li>
 
         
@@ -84,7 +84,7 @@
 -->
 
 <li >
-    <a href="http_methods/main.html">Методы HTTP (Methods)</a>
+    <a href="../http/http_methods/main.html">Методы HTTP (Methods)</a>
 </li>
 
         
@@ -101,7 +101,7 @@
 -->
 
 <li >
-    <a href="http_status/main.html">Общее о кодах состояния</a>
+    <a href="../http/http_status/main.html">Общее о кодах состояния</a>
 </li>
 
         
@@ -110,7 +110,7 @@
 -->
 
 <li >
-    <a href="http_status/http-status-100.html">1xx — Информационные</a>
+    <a href="../http/http_status/http-status-100.html">1xx — Информационные</a>
 </li>
 
         
@@ -119,7 +119,7 @@
 -->
 
 <li >
-    <a href="http_status/http-status-200.html">2xx — Успех:</a>
+    <a href="../http/http_status/http-status-200.html">2xx — Успех:</a>
 </li>
 
         
@@ -128,7 +128,7 @@
 -->
 
 <li >
-    <a href="http_status/http-status-300.html">3xx — Перенаправления</a>
+    <a href="../http/http_status/http-status-300.html">3xx — Перенаправления</a>
 </li>
 
         
@@ -137,7 +137,7 @@
 -->
 
 <li >
-    <a href="http_status/http-status-400.html">4xx — Ошибки клиента</a>
+    <a href="../http/http_status/http-status-400.html">4xx — Ошибки клиента</a>
 </li>
 
         
@@ -146,7 +146,7 @@
 -->
 
 <li >
-    <a href="http_status/http-status-500.html">5xx — Ошибки сервера</a>
+    <a href="../http/http_status/http-status-500.html">5xx — Ошибки сервера</a>
 </li>
 
         
@@ -456,7 +456,7 @@
 -->
 
 <li >
-    <a href="../security/auth-intro.html">Введение в авторизацию</a>
+    <a href="auth-intro.html">Введение в авторизацию</a>
 </li>
 
         
@@ -465,7 +465,7 @@
 -->
 
 <li >
-    <a href="../security/tokens.html">Что такое токены</a>
+    <a href="tokens.html">Что такое токены</a>
 </li>
 
         
@@ -474,7 +474,7 @@
 -->
 
 <li >
-    <a href="../security/basic-auth.html">Basic Auth</a>
+    <a href="basic-auth.html">Basic Auth</a>
 </li>
 
         
@@ -483,7 +483,7 @@
 -->
 
 <li >
-    <a href="../security/jwt.html">Bearer Token / JWT</a>
+    <a href="jwt.html">Bearer Token / JWT</a>
 </li>
 
         
@@ -492,7 +492,7 @@
 -->
 
 <li >
-    <a href="../security/oauth2.html">OAuth 2.0</a>
+    <a href="oauth2.html">OAuth 2.0</a>
 </li>
 
         
@@ -513,7 +513,7 @@
 -->
 
 <li >
-    <a href="../security/csrf.md">CSRF</a>
+    <a href="csrf.md">CSRF</a>
 </li>
 
         
@@ -522,7 +522,7 @@
 -->
 
 <li >
-    <a href="../security/ssl-tls.md">SSL/TLS и HTTPS</a>
+    <a href="ssl-tls.md">SSL/TLS и HTTPS</a>
 </li>
 
         
@@ -531,7 +531,7 @@
 -->
 
 <li >
-    <a href="../security/api-roles.md">Тестирование ролей и доступа</a>
+    <a href="api-roles.md">Тестирование ролей и доступа</a>
 </li>
 
         
@@ -539,8 +539,8 @@
 
 -->
 
-<li >
-    <a href="../security/api-vulnerabilities.html">Проверка уязвимостей API</a>
+<li class="active">
+    <a href="api-vulnerabilities.html">Проверка уязвимостей API</a>
 </li>
 
         
@@ -552,7 +552,13 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#http">Как работает HTTP</a></li>
+              <li><a href="#api">🔒 Проверка уязвимостей API</a></li>
+              
+                  <li class="child"><a href="#_1">📌 Основные виды уязвимостей</a></li>
+              
+                  <li class="child"><a href="#_2">🛠 Инструменты для проверки</a></li>
+              
+                  <li class="child"><a href="#qa">✅ Рекомендации QA</a></li>
               
             
         </ul>
@@ -567,12 +573,12 @@
       
         <div class="prev">
           
-            <a href="../index.html" title="Home">&#8592; Previous Page</a>
+            <a href="oauth2.html" title="OAuth 2.0">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="http-headers.html" title="Заголовки HTTP (Headers)"/>Next Page &#8594;</a>
+            Next Page &#8594;
           
         </div>
       
@@ -581,119 +587,107 @@
 
       
         <div id="body">
-            <h1 id="http">Как работает HTTP</h1>
-<p>Представь, что ты пришёл в ресторан.
-<code>HTTP (HyperText Transfer Protocol)</code> — это как правила общения между тобой (клиентом) и рестораном (сервером).</p>
+            <h1 id="api">🔒 Проверка уязвимостей API</h1>
+<p>API — это не только данные и функциональность, но и потенциальные точки атаки. QA должен уметь проверять основные уязвимости, чтобы предотвратить проблемы с безопасностью.</p>
+<hr />
+<h2 id="_1">📌 Основные виды уязвимостей</h2>
 <ol>
+<li><strong>Недостаточная авторизация</strong></li>
+<li>Пользователь получает доступ к ресурсам, к которым не должен иметь доступа.</li>
 <li>
-<p><strong>Клиент и сервер:</strong></p>
+<p>Примеры проверки:</p>
 <ul>
-<li>
-<p><strong>Ты</strong> — это клиент, который хочет получить еду (данные).</p>
-</li>
-<li>
-<p><strong>Ресторан</strong> — это сервер, который готовит и подаёт еду (информацию).</p>
-</li>
+<li>Попробовать получить данные другого пользователя через <code>GET /users/{id}</code></li>
+<li>Изменить данные чужого ресурса через <code>PUT/PATCH/DELETE</code></li>
 </ul>
 </li>
 <li>
-<p><strong>Запрос (Request):</strong></p>
-<p>Ты подходишь к официанту и говоришь:</p>
-<pre><code>«Я хочу пиццу Маргарита и стакан лимонада».
-</code></pre>
-<p>В мире HTTP это выглядит так:</p>
+<p><strong>Утечка токенов или ключей</strong></p>
+</li>
+<li>Токены доступа (JWT, Bearer) видны или хранятся небезопасно.</li>
+<li>
+<p>Примеры проверки:</p>
 <ul>
-<li>
-<p>Ты отправляешь запрос на сервер.</p>
-</li>
-<li>
-<p>Запрос содержит метод (что ты хочешь сделать — заказать, узнать, обновить).</p>
-</li>
-<li>
-<p>Запрос может содержать заголовки (например, на каком языке тебе удобнее получить меню) и тело запроса (например, дополнительные пожелания: "без оливок").</p>
-</li>
+<li>Проверить токен в URL или логах</li>
+<li>Попробовать использовать чужой токен</li>
 </ul>
 </li>
 <li>
-<p><strong>Обработка запроса</strong></p>
-<p>Официант передаёт заказ на кухню (сервер), где повар готовит еду.
-Сервер обрабатывает твой запрос: ищет данные, выполняет команды.</p>
+<p><strong>SQL / NoSQL инъекции</strong></p>
 </li>
+<li>Ввод специальных символов для обхода фильтров и получения несанкционированных данных.</li>
 <li>
-<p><strong>Ответ (Response)</strong></p>
-<p>Официант приносит тебе заказ — пиццу и лимонад.
-Это ответ сервера:</p>
+<p>Примеры:</p>
 <ul>
-<li>
-<p><strong>Статус</strong>: «200 — Всё отлично, вот ваш заказ».</p>
-</li>
-<li>
-<p><strong>Заголовки ответа</strong>: температура еды, тип блюда (например, «итальянская кухня»).</p>
-</li>
-<li>
-<p><strong>Тело ответа</strong>: сама пицца и лимонад (данные, которые ты запросил).</p>
-</li>
+<li>Вставка <code>' OR 1=1 --</code> в параметры запроса</li>
+<li>Проверка обработки специальных символов в фильтрах</li>
 </ul>
 </li>
 <li>
-<p><a href="/http/http_status/main.md"><strong>Статусы</strong></a></p>
-<p>Иногда всё идёт не по плану:</p>
+<p><strong>XSS (Cross-Site Scripting)</strong></p>
+</li>
+<li>Если API возвращает данные, которые затем отображаются в веб-приложении.</li>
+<li>
+<p>Пример:</p>
 <ul>
-<li>
-<p><strong>404</strong> — Блюда нет в меню.</p>
-</li>
-<li>
-<p><strong>500</strong> — На кухне сломалась плита.</p>
-</li>
-<li>
-<p><strong>302</strong> — Мы переехали в другой ресторан.</p>
-</li>
+<li>Вставка <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> в текстовые поля</li>
+<li>Проверка, экранируются ли символы при возврате ответа</li>
 </ul>
 </li>
 <li>
-<p><strong>Почему это важно</strong></p>
-<p>HTTP — это как единый «язык общения» между клиентами и серверами.
-Благодаря нему:</p>
+<p><strong>CSRF (Cross-Site Request Forgery)</strong></p>
+</li>
+<li>Нежелательные действия выполняются от имени пользователя без его ведома.</li>
+<li>
+<p>Пример:</p>
 <ul>
-<li>
-<p>Браузер понимает, как запросить сайт.</p>
+<li>Проверить защищённые POST/PUT/DELETE эндпоинты без токена или с поддельным токеном</li>
+</ul>
 </li>
 <li>
-<p>Сервер понимает, что и как тебе передать.</p>
+<p><strong>Неправильная обработка ошибок</strong></p>
+</li>
+<li>Сервер возвращает подробные ошибки, раскрывая внутренние данные.</li>
+<li>
+<p>Пример:</p>
+<ul>
+<li>Отправка некорректного запроса и проверка, не выводится ли стек-трейс или информация о базе данных</li>
+</ul>
 </li>
 <li>
-<p>Разные программы и устройства могут обмениваться данными, даже если они созданы разными компаниями.</p>
+<p><strong>Rate limiting / DoS</strong></p>
 </li>
+<li>Проверка ограничений на количество запросов для предотвращения перегрузки.</li>
+<li>Пример:<ul>
+<li>Быстрое многократное выполнение одного запроса</li>
+<li>Проверка ответа сервера (<code>429 Too Many Requests</code>)</li>
 </ul>
 </li>
 </ol>
-<p>Если провести полную аналогию:</p>
+<hr />
+<h2 id="_2">🛠 Инструменты для проверки</h2>
 <ul>
-<li>
-<p><strong>Клиент</strong> — гость в ресторане.</p>
-</li>
-<li>
-<p><strong>Сервер</strong> — ресторан.</p>
-</li>
-<li>
-<p><strong>Метод</strong> — тип действия (заказать, уточнить, отменить).</p>
-</li>
-<li>
-<p><strong>Заголовки</strong> — дополнительные инструкции (на каком языке, в каком виде).</p>
-</li>
-<li>
-<p><strong>Тело</strong> — подробности заказа.</p>
-</li>
-<li>
-<p><strong>Статус</strong> — результат выполнения заказа.</p>
-</li>
+<li><strong>Postman / Insomnia</strong> — ручное тестирование эндпоинтов</li>
+<li><strong>OWASP ZAP</strong> — автоматизированное сканирование уязвимостей</li>
+<li><strong>Burp Suite</strong> — продвинутое тестирование безопасности</li>
+<li><strong>Curl / HTTPie</strong> — ручные тесты с командной строки</li>
+<li><strong>Automated QA Scripts</strong> — Python/JS скрипты для проверки токенов, прав доступа и валидации</li>
+</ul>
+<hr />
+<h2 id="qa">✅ Рекомендации QA</h2>
+<ul>
+<li>Всегда проверять авторизацию и права доступа на каждом эндпоинте.</li>
+<li>Пробовать как позитивные, так и негативные сценарии.</li>
+<li>Проверять обработку ошибок и корректность кодов ответа.</li>
+<li>Использовать как ручное тестирование, так и автоматические сканеры.</li>
+<li>Документировать найденные уязвимости и повторно проверять после исправлений.</li>
 </ul>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:32:37.311903+00:00
+  Docs Build Date UTC : 2025-08-15 01:32:37.319298+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
