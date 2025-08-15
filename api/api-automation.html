@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-tests.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-automation.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Как проверять ответы API - Manual QA docs</title>
+        <title>Инструменты для автоматизации тестов - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -293,7 +293,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-tests.html">Как проверять ответы API</a>
 </li>
 
@@ -368,7 +368,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-automation.html">Инструменты для автоматизации тестов</a>
 </li>
 
@@ -552,9 +552,14 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Как проверять ответы API</a></li>
+              <li><a href="#api">🤖 Инструменты для автоматизации тестов API</a></li>
               
-                  <li class="child"><a href="#-api">📝 Чек-лист проверки ответа API</a></li>
+                  <li class="child"><a href="#1-postman-collection-runner-newman">1. Postman (Collection Runner + Newman)</a></li>
+              
+            
+              <li><a href="#api_1">🛠 Инструменты для автоматизации тестов API</a></li>
+              
+                  <li class="child"><a href="#qa">✅ Рекомендации QA</a></li>
               
             
         </ul>
@@ -569,7 +574,7 @@
       
         <div class="prev">
           
-            <a href="api-timeouts.html" title="Тестирование ошибок сети и таймаутов">&#8592; Previous Page</a>
+            <a href="api-diff.html" title="Diff-инструменты">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
@@ -583,160 +588,158 @@
 
       
         <div id="body">
-            <h1 id="api">Как проверять ответы API</h1>
-<p>Когда ты делаешь запрос к API, это как заказать блюдо в ресторане: важно не только то, что официант <strong>принёс</strong>, но и <strong>в каком состоянии</strong> он это принёс.</p>
-<p>Проверка ответа API — это как контроль качества:</p>
+            <h1 id="api">🤖 Инструменты для автоматизации тестов API</h1>
+<p>Автоматизация тестирования позволяет <strong>быстро проверять корректность работы API</strong>, повторять тесты и интегрировать проверки в CI/CD.</p>
+<hr />
+<h2 id="1-postman-collection-runner-newman">1. Postman (Collection Runner + Newman)</h2>
 <ul>
-<li>
-<p>правильно ли приготовлено</p>
-</li>
-<li>
-<p>соответствует ли заказу</p>
-</li>
-<li>
-<p>не испортилось ли по дороге</p>
-</li>
+<li>Позволяет создавать коллекции запросов API и запускать их автоматически.</li>
+<li>Можно добавлять <strong>тестовые скрипты на JavaScript</strong> для проверки ответов.</li>
+<li><strong>Newman</strong> — CLI-инструмент для запуска коллекций Postman в терминале или CI/CD.</li>
 </ul>
-<p><strong>1. Проверяем статус код</strong></p>
-<p>Первое, на что стоит смотреть — это <strong>HTTP Status Code</strong>.</p>
-<p>📜 Примеры:</p>
-<ul>
-<li>
-<p>200 OK — всё хорошо, заказ доставлен.</p>
-</li>
-<li>
-<p>404 Not Found — такого блюда в меню нет.</p>
-</li>
-<li>
-<p>500 Internal Server Error — на кухне пожар (или повар ошибся).</p>
-</li>
-</ul>
-<p><strong>Как проверить</strong>:</p>
-<p>В Postman, curl или DevTools смотри первую строчку ответа сервера.</p>
-<pre><code class="language-json">curl -i https://api.example.com/menu
+<p><strong>Пример теста в Postman:</strong></p>
+<pre><code class="language-javascript">pm.test(&quot;Проверка кода ответа&quot;, function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test(&quot;Проверка структуры JSON&quot;, function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property(&quot;id&quot;);
+    pm.expect(jsonData).to.have.property(&quot;email&quot;);
+});
 </code></pre>
-<p><strong>2. Проверяем заголовки ответа</strong></p>
-<p>Заголовки — это как заметки от кухни.</p>
-<p>📌 На что обратить внимание:</p>
-<ul>
-<li>
-<p><code>Content-Type</code> — формат «блюда» (<code>JSON</code>, <code>HTML</code>, <code>XML</code> и т.д.)</p>
-</li>
-<li>
-<p><code>Cache-Control</code> — можно ли хранить это блюдо на потом</p>
-</li>
-<li>
-<p><code>Set-Cookie</code> — сервер запомнил что-то о тебе</p>
-</li>
-</ul>
-<pre><code class="language-json">HTTP/1.1 200 OK
-Content-Type: application/json
-Cache-Control: no-cache
+<p>Запуск коллекции через Newman:</p>
+<pre><code class="language-bash">newman run my_collection.json -e my_environment.json
 </code></pre>
-<p><strong>3. Проверяем тело ответа</strong></p>
-<p>Это собственно данные, которые ты получил.</p>
-<p>Пример JSON-ответа:</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: 101,
-  &quot;name&quot;: &quot;Маргарита&quot;,
-  &quot;price&quot;: 450
-}
+<p><strong>2. Insomnia (Insomnia Designer + CLI)</strong></p>
+<ul>
+<li>
+<p>Позволяет создавать <code>API</code>-запросы и писать тестовые сценарии.</p>
+</li>
+<li>
+<p><code>Insomnia Designer</code> поддерживает <code>OpenAPI</code> спецификации, можно генерировать тесты на их основе.</p>
+</li>
+</ul>
+<p><strong>3. REST-assured (Java)</strong></p>
+<ul>
+<li>
+<p>Фреймворк для автоматизации тестов <code>REST API</code> на <code>Java</code>.</p>
+</li>
+<li>
+<p>Подходит для <code>QA</code> и интеграционных тестов.</p>
+</li>
+<li>
+<p>Пример проверки статуса и тела ответа:</p>
+</li>
+</ul>
+<pre><code class="language-java">given()
+    .header(&quot;Authorization&quot;, &quot;Bearer &lt;token&gt;&quot;)
+.when()
+    .get(&quot;/api/v1/users/1&quot;)
+.then()
+    .statusCode(200)
+    .body(&quot;username&quot;, equalTo(&quot;ivan&quot;));
 </code></pre>
-<p>Что проверить:</p>
+<p><strong>4. Pytest + Requests (Python)</strong></p>
+<ul>
+<li>Позволяет писать тесты API на Python.</li>
+<li>Можно проверять ответы, заголовки, коды статусов и содержимое JSON.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">import requests
+
+def test_get_user():
+    response = requests.get(
+        &quot;https://api.example.com/api/v1/users/1&quot;,
+        headers={&quot;Authorization&quot;: &quot;Bearer &lt;token&gt;&quot;}
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data[&quot;username&quot;] == &quot;ivan&quot;
+
+</code></pre>
+<p><strong>6. CI/CD интеграция</strong></p>
 <ul>
 <li>
-<p>Все ли поля есть?</p>
+<p>Запуск тестов автоматически при каждом деплое.</p>
 </li>
 <li>
-<p>Правильные ли значения?</p>
+<p>Используем <code>GitHub Actions</code>, <code>GitLab CI</code>, <code>Jenkins</code> или других <code>CI</code>-серверы.</p>
 </li>
 <li>
-<p>Правильный формат? (например, цена числом, а не строкой)</p>
+<p><code>QA</code> может настроить отчёты о пройденных и упавших тестах.</p>
 </li>
 </ul>
-<p><strong>4. Проверяем время ответа</strong></p>
-<p>В ресторане важно, чтобы еда была горячей, а в API — чтобы ответ пришёл быстро.</p>
-<ul>
-<li>
-<p>Обычно хороший API отвечает за <strong>100–500 мс</strong>.</p>
-</li>
-<li>
-<p>Если API думает по 5 секунд — что-то не так.</p>
-</li>
-</ul>
-<p><strong>Как проверить:</strong></p>
-<p>Postman, curl (-w "%{time_total}") или вкладка Timing в браузере.</p>
-<p><strong>5. Проверяем корректность данных</strong></p>
-<p>Даже если API ответил 200 OK, это не значит, что данные верные.</p>
-<p>Например:</p>
-<ul>
-<li>
-<p>Запросил пользователя с <code>id=5</code>, а получил <code>id=7</code> — значит, перепутали заказ.</p>
-</li>
-<li>
-<p>Цена блюда отрицательная — кто-то явно ошибся.</p>
-</li>
-</ul>
-<h2 id="-api">📝 Чек-лист проверки ответа API</h2>
+<h1 id="api_1">🛠 Инструменты для автоматизации тестов API</h1>
+<table>
+<thead>
+<tr>
+<th>Инструмент</th>
+<th>Язык / Среда</th>
+<th>Особенности</th>
+<th>Пример использования</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Postman</strong></td>
+<td>GUI / JS</td>
+<td>Коллекции запросов, тесты на JavaScript, CI через Newman</td>
+<td>Проверка статуса и JSON-структуры</td>
+</tr>
+<tr>
+<td><strong>Insomnia</strong></td>
+<td>GUI / CLI</td>
+<td>Поддержка OpenAPI, создание сценариев тестов</td>
+<td>Автоматическая генерация тестов по спецификации OpenAPI</td>
+</tr>
+<tr>
+<td><strong>REST-assured</strong></td>
+<td>Java</td>
+<td>Фреймворк для REST API тестов, интеграция с JUnit/TestNG</td>
+<td>Проверка статуса и содержимого JSON</td>
+</tr>
+<tr>
+<td><strong>Pytest + Requests</strong></td>
+<td>Python</td>
+<td>Легкий способ писать тесты, проверка кодов статусов, заголовков, тела</td>
+<td>Проверка GET/POST запросов с токеном</td>
+</tr>
+<tr>
+<td><strong>Karate DSL</strong></td>
+<td>Java / Cucumber</td>
+<td>Декларативный синтаксис, работа с JSON/XML, поддержка сценариев</td>
+<td>Тестирование REST API через Feature-файлы</td>
+</tr>
+<tr>
+<td><strong>Swagger/OpenAPI</strong></td>
+<td>GUI / YAML/JSON</td>
+<td>Документация и автоматическая генерация тестов</td>
+<td>Генерация тестов по спецификации API</td>
+</tr>
+<tr>
+<td><strong>CI/CD инструменты</strong></td>
+<td>GitHub Actions, Jenkins, GitLab CI</td>
+<td>Автозапуск тестов при деплое, отчёты о пройденных/упавших тестах</td>
+<td>Автоматическое тестирование всех эндпоинтов при коммитах</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="qa">✅ Рекомендации QA</h3>
 <ol>
-<li><strong>Статус код</strong></li>
-<li>[ ] Соответствует ли ожидаемому (<code>200</code>, <code>201</code>, <code>400</code>, <code>404</code>, <code>500</code> и т.д.)</li>
-<li>
-<p>[ ] Нет ли неожиданных кодов ошибок</p>
-</li>
-<li>
-<p><strong>Заголовки ответа</strong></p>
-</li>
-<li>[ ] <code>Content-Type</code> верный (например, <code>application/json</code> для JSON)</li>
-<li>[ ] Заголовки безопасности (<code>X-Content-Type-Options</code>, <code>Strict-Transport-Security</code> и др.)</li>
-<li>
-<p>[ ] <code>Cache-Control</code> и <code>Expires</code> настроены правильно</p>
-</li>
-<li>
-<p><strong>Тело ответа</strong></p>
-</li>
-<li>[ ] Формат соответствует ожидаемому (JSON, XML, HTML)</li>
-<li>[ ] Все обязательные поля присутствуют</li>
-<li>[ ] Поля содержат корректные типы данных (числа, строки, массивы)</li>
-<li>[ ] Значения полей логически верны (цена ≥ 0, даты в правильном диапазоне)</li>
-<li>
-<p>[ ] Нет лишних или тестовых данных</p>
-</li>
-<li>
-<p><strong>Время ответа</strong></p>
-</li>
-<li>[ ] В пределах нормы для сервиса (обычно &lt; 500 мс)</li>
-<li>
-<p>[ ] Нет задержек при повторных запросах</p>
-</li>
-<li>
-<p><strong>Корректность данных</strong></p>
-</li>
-<li>[ ] Данные соответствуют запросу (если искали id=5, пришёл именно id=5)</li>
-<li>[ ] Данные актуальны (нет устаревшей информации)</li>
-<li>
-<p>[ ] Уникальность там, где она нужна (например, email пользователя)</p>
-</li>
-<li>
-<p><strong>Кодировка</strong></p>
-</li>
-<li>[ ] Символы не искажены (UTF-8 без ошибок)</li>
-<li>
-<p>[ ] Нет проблем с национальными символами (русский, китайский и т.д.)</p>
-</li>
-<li>
-<p><strong>Безопасность</strong></p>
-</li>
-<li>[ ] Нет лишней информации об ошибках (стек-трейсы, конфигурация сервера)</li>
-<li>[ ] Доступ к данным корректно ограничен (нет чужих данных)</li>
-<li>[ ] Нет чувствительных данных в ответе (пароли, токены в открытом виде)</li>
+<li>Используй <strong>GUI-инструменты</strong> (Postman, Insomnia) для быстрых проверок и создания тестов.</li>
+<li>Для <strong>повторяемых сценариев</strong> лучше использовать кодовые фреймворки (Pytest, REST-assured, Karate).</li>
+<li>Интегрируй тесты в <strong>CI/CD</strong>, чтобы сразу видеть регрессии и ошибки.</li>
+<li>Создавай <strong>коллекции и окружения</strong>, чтобы легко менять Base URL, токены и другие параметры.</li>
+<li>Сохраняй результаты прогонов и используй их для <strong>сравнения с предыдущими тестами</strong>.</li>
 </ol>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:46:58.909391+00:00
+  Docs Build Date UTC : 2025-08-15 01:46:58.896820+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});

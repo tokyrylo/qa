@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-tests.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-schema-validation.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Как проверять ответы API - Manual QA docs</title>
+        <title>Проверка схем данных (JSON Schema / OpenAPI) - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -293,7 +293,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-tests.html">Как проверять ответы API</a>
 </li>
 
@@ -311,7 +311,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-schema-validation.html">Проверка схем данных (JSON Schema / OpenAPI)</a>
 </li>
 
@@ -552,9 +552,30 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Как проверять ответы API</a></li>
+              <li><a href="#json-schema-openapi">📊 Проверка схем данных (JSON Schema / OpenAPI)</a></li>
               
-                  <li class="child"><a href="#-api">📝 Чек-лист проверки ответа API</a></li>
+                  <li class="child"><a href="#_1">📌 Основные цели проверки схемы</a></li>
+              
+                  <li class="child"><a href="#_2">🛠 Инструменты для проверки схем</a></li>
+              
+                  <li class="child"><a href="#qa">✅ Рекомендации QA</a></li>
+              
+            
+              <li><a href="#qa-api">📝 Чеклист QA: Проверка схем данных API</a></li>
+              
+                  <li class="child"><a href="#1">1. Общие проверки</a></li>
+              
+                  <li class="child"><a href="#2">2. Типы данных</a></li>
+              
+                  <li class="child"><a href="#3">3. Обязательные и опциональные поля</a></li>
+              
+                  <li class="child"><a href="#4">4. Форматы и ограничения</a></li>
+              
+                  <li class="child"><a href="#5">5. Массивы и вложенные объекты</a></li>
+              
+                  <li class="child"><a href="#6">6. Ошибки и исключения</a></li>
+              
+                  <li class="child"><a href="#7">7. Автоматизация</a></li>
               
             
         </ul>
@@ -569,12 +590,12 @@
       
         <div class="prev">
           
-            <a href="api-timeouts.html" title="Тестирование ошибок сети и таймаутов">&#8592; Previous Page</a>
+            <a href="api-errors.html" title="Типичные ошибки в API и как их находить">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="api-errors.html" title="Типичные ошибки в API и как их находить"/>Next Page &#8594;</a>
+        <a href="api-data-validation.html" title="Проверка согласованности данных"/>Next Page &#8594;</a>
           
         </div>
       
@@ -583,160 +604,141 @@
 
       
         <div id="body">
-            <h1 id="api">Как проверять ответы API</h1>
-<p>Когда ты делаешь запрос к API, это как заказать блюдо в ресторане: важно не только то, что официант <strong>принёс</strong>, но и <strong>в каком состоянии</strong> он это принёс.</p>
-<p>Проверка ответа API — это как контроль качества:</p>
-<ul>
-<li>
-<p>правильно ли приготовлено</p>
-</li>
-<li>
-<p>соответствует ли заказу</p>
-</li>
-<li>
-<p>не испортилось ли по дороге</p>
-</li>
-</ul>
-<p><strong>1. Проверяем статус код</strong></p>
-<p>Первое, на что стоит смотреть — это <strong>HTTP Status Code</strong>.</p>
-<p>📜 Примеры:</p>
-<ul>
-<li>
-<p>200 OK — всё хорошо, заказ доставлен.</p>
-</li>
-<li>
-<p>404 Not Found — такого блюда в меню нет.</p>
-</li>
-<li>
-<p>500 Internal Server Error — на кухне пожар (или повар ошибся).</p>
-</li>
-</ul>
-<p><strong>Как проверить</strong>:</p>
-<p>В Postman, curl или DevTools смотри первую строчку ответа сервера.</p>
-<pre><code class="language-json">curl -i https://api.example.com/menu
-</code></pre>
-<p><strong>2. Проверяем заголовки ответа</strong></p>
-<p>Заголовки — это как заметки от кухни.</p>
-<p>📌 На что обратить внимание:</p>
-<ul>
-<li>
-<p><code>Content-Type</code> — формат «блюда» (<code>JSON</code>, <code>HTML</code>, <code>XML</code> и т.д.)</p>
-</li>
-<li>
-<p><code>Cache-Control</code> — можно ли хранить это блюдо на потом</p>
-</li>
-<li>
-<p><code>Set-Cookie</code> — сервер запомнил что-то о тебе</p>
-</li>
-</ul>
-<pre><code class="language-json">HTTP/1.1 200 OK
-Content-Type: application/json
-Cache-Control: no-cache
-</code></pre>
-<p><strong>3. Проверяем тело ответа</strong></p>
-<p>Это собственно данные, которые ты получил.</p>
-<p>Пример JSON-ответа:</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: 101,
-  &quot;name&quot;: &quot;Маргарита&quot;,
-  &quot;price&quot;: 450
-}
-</code></pre>
-<p>Что проверить:</p>
-<ul>
-<li>
-<p>Все ли поля есть?</p>
-</li>
-<li>
-<p>Правильные ли значения?</p>
-</li>
-<li>
-<p>Правильный формат? (например, цена числом, а не строкой)</p>
-</li>
-</ul>
-<p><strong>4. Проверяем время ответа</strong></p>
-<p>В ресторане важно, чтобы еда была горячей, а в API — чтобы ответ пришёл быстро.</p>
-<ul>
-<li>
-<p>Обычно хороший API отвечает за <strong>100–500 мс</strong>.</p>
-</li>
-<li>
-<p>Если API думает по 5 секунд — что-то не так.</p>
-</li>
-</ul>
-<p><strong>Как проверить:</strong></p>
-<p>Postman, curl (-w "%{time_total}") или вкладка Timing в браузере.</p>
-<p><strong>5. Проверяем корректность данных</strong></p>
-<p>Даже если API ответил 200 OK, это не значит, что данные верные.</p>
-<p>Например:</p>
-<ul>
-<li>
-<p>Запросил пользователя с <code>id=5</code>, а получил <code>id=7</code> — значит, перепутали заказ.</p>
-</li>
-<li>
-<p>Цена блюда отрицательная — кто-то явно ошибся.</p>
-</li>
-</ul>
-<h2 id="-api">📝 Чек-лист проверки ответа API</h2>
+            <h1 id="json-schema-openapi">📊 Проверка схем данных (JSON Schema / OpenAPI)</h1>
+<p>Когда API возвращает данные, важно убедиться, что они соответствуют ожидаемой структуре. QA проверяет не только наличие полей, но и их типы, обязательность и ограничения.</p>
+<hr />
+<h2 id="_1">📌 Основные цели проверки схемы</h2>
 <ol>
-<li><strong>Статус код</strong></li>
-<li>[ ] Соответствует ли ожидаемому (<code>200</code>, <code>201</code>, <code>400</code>, <code>404</code>, <code>500</code> и т.д.)</li>
+<li><strong>Типы данных</strong></li>
+<li>Проверка, что поле имеет правильный тип (<code>string</code>, <code>integer</code>, <code>boolean</code>, <code>array</code>, <code>object</code>).</li>
 <li>
-<p>[ ] Нет ли неожиданных кодов ошибок</p>
+<p>Пример:
+     <code>json
+     {
+       "id": 123,          // integer
+       "name": "Иван",     // string
+       "is_active": true   // boolean
+     }</code></p>
 </li>
 <li>
-<p><strong>Заголовки ответа</strong></p>
+<p><strong>Обязательные и опциональные поля</strong></p>
 </li>
-<li>[ ] <code>Content-Type</code> верный (например, <code>application/json</code> для JSON)</li>
-<li>[ ] Заголовки безопасности (<code>X-Content-Type-Options</code>, <code>Strict-Transport-Security</code> и др.)</li>
+<li>Поля, которые всегда должны присутствовать (<code>required</code>), и те, что могут отсутствовать.</li>
 <li>
-<p>[ ] <code>Cache-Control</code> и <code>Expires</code> настроены правильно</p>
-</li>
-<li>
-<p><strong>Тело ответа</strong></p>
-</li>
-<li>[ ] Формат соответствует ожидаемому (JSON, XML, HTML)</li>
-<li>[ ] Все обязательные поля присутствуют</li>
-<li>[ ] Поля содержат корректные типы данных (числа, строки, массивы)</li>
-<li>[ ] Значения полей логически верны (цена ≥ 0, даты в правильном диапазоне)</li>
-<li>
-<p>[ ] Нет лишних или тестовых данных</p>
+<p>Пример:
+     <code>json
+     {
+       "email": "user@example.com",  // required
+       "phone": null                 // optional
+     }</code></p>
 </li>
 <li>
-<p><strong>Время ответа</strong></p>
+<p><strong>Форматы и ограничения</strong></p>
 </li>
-<li>[ ] В пределах нормы для сервиса (обычно &lt; 500 мс)</li>
+<li>Проверка формата данных (<code>email</code>, <code>date-time</code>, <code>uuid</code>) и ограничений (<code>minLength</code>, <code>maxLength</code>, <code>enum</code>).</li>
 <li>
-<p>[ ] Нет задержек при повторных запросах</p>
-</li>
-<li>
-<p><strong>Корректность данных</strong></p>
-</li>
-<li>[ ] Данные соответствуют запросу (если искали id=5, пришёл именно id=5)</li>
-<li>[ ] Данные актуальны (нет устаревшей информации)</li>
-<li>
-<p>[ ] Уникальность там, где она нужна (например, email пользователя)</p>
+<p>Пример:
+     <code>json
+     {
+       "status": "active",      // enum: ["active", "inactive"]
+       "created_at": "2025-08-15T12:00:00Z"  // date-time
+     }</code></p>
 </li>
 <li>
-<p><strong>Кодировка</strong></p>
+<p><strong>Массивы и вложенные объекты</strong></p>
 </li>
-<li>[ ] Символы не искажены (UTF-8 без ошибок)</li>
-<li>
-<p>[ ] Нет проблем с национальными символами (русский, китайский и т.д.)</p>
-</li>
-<li>
-<p><strong>Безопасность</strong></p>
-</li>
-<li>[ ] Нет лишней информации об ошибках (стек-трейсы, конфигурация сервера)</li>
-<li>[ ] Доступ к данным корректно ограничен (нет чужих данных)</li>
-<li>[ ] Нет чувствительных данных в ответе (пароли, токены в открытом виде)</li>
+<li>Проверка структуры массивов и объектов внутри объектов.</li>
+<li>Пример:
+     <code>json
+     {
+       "users": [
+         {
+           "id": 1,
+           "name": "Иван"
+         },
+         {
+           "id": 2,
+           "name": "Мария"
+         }
+       ]
+     }</code></li>
 </ol>
+<hr />
+<h2 id="_2">🛠 Инструменты для проверки схем</h2>
+<ul>
+<li><strong>Postman</strong></li>
+<li>Возможность проверять поля и типы через тесты на JavaScript.</li>
+<li><strong>Swagger / OpenAPI</strong></li>
+<li>Автоматически валидирует ответы сервера согласно описанной схеме.</li>
+<li><strong>JSON Schema Validator</strong></li>
+<li>Онлайн-сервисы или библиотеки на Python/JS для проверки JSON по схеме.</li>
+<li><strong>Automated QA Scripts</strong></li>
+<li>Скрипты для проверки структуры и типов полей в ответах API.</li>
+</ul>
+<hr />
+<h2 id="qa">✅ Рекомендации QA</h2>
+<ul>
+<li>Всегда проверяй ключевые поля, их типы и форматы.</li>
+<li>Убедись, что обязательные поля всегда присутствуют, а опциональные корректно обрабатываются при отсутствии.</li>
+<li>Для массивов проверяй структуру каждого элемента.</li>
+<li>Документируй несоответствия схемы и проверяй их после исправлений.</li>
+</ul>
+<h1 id="qa-api">📝 Чеклист QA: Проверка схем данных API</h1>
+<p>Используйте этот чеклист, чтобы убедиться, что ответы API соответствуют ожидаемой структуре и требованиям.</p>
+<hr />
+<h2 id="1">1. Общие проверки</h2>
+<ul>
+<li>[ ] Ответ имеет корректный HTTP статус (200, 201, 400, 401 и т.д.)</li>
+<li>[ ] Content-Type ответа соответствует ожидаемому (<code>application/json</code>, <code>application/xml</code>)</li>
+<li>[ ] Тело ответа не пустое (если ожидалось наличие данных)</li>
+</ul>
+<hr />
+<h2 id="2">2. Типы данных</h2>
+<ul>
+<li>[ ] Поля имеют правильный тип (<code>string</code>, <code>integer</code>, <code>boolean</code>, <code>array</code>, <code>object</code>)</li>
+<li>[ ] Поля с числами не содержат строки</li>
+<li>[ ] Поля с логическим типом (<code>boolean</code>) содержат только <code>true</code> или <code>false</code></li>
+</ul>
+<hr />
+<h2 id="3">3. Обязательные и опциональные поля</h2>
+<ul>
+<li>[ ] Все обязательные поля присутствуют в ответе</li>
+<li>[ ] Опциональные поля корректно обрабатываются при отсутствии</li>
+<li>[ ] Нет лишних полей, которых нет в документации</li>
+</ul>
+<hr />
+<h2 id="4">4. Форматы и ограничения</h2>
+<ul>
+<li>[ ] Поля с форматом <code>email</code>, <code>uuid</code>, <code>date-time</code> соответствуют стандарту</li>
+<li>[ ] Поля с перечислениями (<code>enum</code>) содержат только допустимые значения</li>
+<li>[ ] Проверены ограничения длины (<code>minLength</code>, <code>maxLength</code>) и числовые ограничения (<code>minimum</code>, <code>maximum</code>)</li>
+</ul>
+<hr />
+<h2 id="5">5. Массивы и вложенные объекты</h2>
+<ul>
+<li>[ ] Массивы содержат элементы правильного типа</li>
+<li>[ ] Каждый объект в массиве соответствует схеме</li>
+<li>[ ] Вложенные объекты имеют правильную структуру и все обязательные поля</li>
+</ul>
+<hr />
+<h2 id="6">6. Ошибки и исключения</h2>
+<ul>
+<li>[ ] Проверка структуры ответа при ошибках (<code>4xx</code>, <code>5xx</code>)</li>
+<li>[ ] Сообщение об ошибке содержит обязательные поля (<code>code</code>, <code>message</code>, <code>details</code>)</li>
+<li>[ ] Типы данных в ошибках корректны</li>
+</ul>
+<hr />
+<h2 id="7">7. Автоматизация</h2>
+<ul>
+<li>[ ] Написаны тесты для проверки схемы на Postman / Insomnia / Automated QA</li>
+<li>[ ] Проверка схемы интегрирована в CI/CD (если возможно)</li>
+</ul>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:46:58.909391+00:00
+  Docs Build Date UTC : 2025-08-15 01:46:58.906608+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
