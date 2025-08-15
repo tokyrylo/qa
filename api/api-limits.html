@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-practice.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-limits.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Как делать запросы в API - Manual QA docs</title>
+        <title>Проверка ограничений API - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -227,7 +227,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-practice.html">Как делать запросы в API</a>
 </li>
 
@@ -263,7 +263,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-limits.html">Проверка ограничений API</a>
 </li>
 
@@ -552,7 +552,11 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Как делать запросы к API — инструменты</a></li>
+              <li><a href="#api">🔒 Проверка ограничений API</a></li>
+              
+                  <li class="child"><a href="#_1">📌 Основные типы ограничений</a></li>
+              
+                  <li class="child"><a href="#_2">🚀 Как проверять ограничения</a></li>
               
             
         </ul>
@@ -567,12 +571,12 @@
       
         <div class="prev">
           
-            <a href="data-formats.html" title="Форматы данных">&#8592; Previous Page</a>
+            <a href="api-params.html" title="Параметры запроса в API">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="api-structure.html" title="Структура запроса в API"/>Next Page &#8594;</a>
+        <a href="api-timeouts.html" title="Тестирование ошибок сети и таймаутов"/>Next Page &#8594;</a>
           
         </div>
       
@@ -581,86 +585,115 @@
 
       
         <div id="body">
-            <h1 id="api">Как делать запросы к API — инструменты</h1>
-<p><code>API</code> — это интерфейс для общения программ и приложений. Чтобы с ним работать, нужно уметь отправлять запросы и получать ответы. Для этого используют специальные инструменты.
-Популярные инструменты для работы с API</p>
+            <h1 id="api">🔒 Проверка ограничений API</h1>
+<p>Когда ты тестируешь API, важно проверять не только успешные сценарии, но и ограничения, которые накладывает сервер. Это помогает выявить ошибки и баги, которые могут появляться при необычных условиях.</p>
+<hr />
+<h2 id="_1">📌 Основные типы ограничений</h2>
 <ol>
+<li><strong>Ограничения по параметрам запроса</strong></li>
+<li>Минимальные/максимальные значения (<code>age &gt;= 18</code>, <code>limit &lt;= 100</code>)</li>
+<li>Обязательные и опциональные поля</li>
 <li>
-<p><strong>Postman</strong>:</p>
-<ul>
-<li>
-<p>Графический инструмент с удобным интерфейсом.</p>
+<p>Формат данных (например, email должен быть валидным)</p>
 </li>
 <li>
-<p>Позволяет создавать и отправлять запросы разных типов (<code>GET</code>, <code>POST</code>, <code>PUT</code> и др.).</p>
+<p><strong>Ограничения по авторизации</strong></p>
+</li>
+<li>Только авторизованные пользователи могут выполнять определённые действия</li>
+<li>
+<p>Проверка ролей (admin, user, guest)</p>
 </li>
 <li>
-<p>Можно сохранять запросы, группировать их, создавать сценарии тестирования.</p>
+<p><strong>Ограничения по частоте запросов</strong></p>
+</li>
+<li>Rate limiting: сервер может ограничивать количество запросов в минуту/час</li>
+<li>
+<p>Например: 100 запросов в минуту → при превышении <code>429 Too Many Requests</code></p>
 </li>
 <li>
-<p>Подходит и новичкам, и опытным тестировщикам.</p>
+<p><strong>Ограничения по объему данных</strong></p>
 </li>
-</ul>
-<p><strong>Пример:</strong></p>
-<ul>
+<li>Максимальный размер тела запроса</li>
 <li>
-<p>Вводишь URL и метод запроса.</p>
+<p>Максимальное количество элементов в списках</p>
 </li>
 <li>
-<p>Добавляешь заголовки и тело (если нужно).</p>
+<p><strong>Ограничения бизнес-логики</strong></p>
 </li>
-<li>
-<p>Нажимаешь кнопку «Send» и смотришь ответ сервера.</p>
-</li>
-</ul>
-</li>
+<li>Например, нельзя удалить пользователя, если он является единственным администратором</li>
+<li>Проверка уникальности email/username</li>
 </ol>
-<p><a class="glightbox" href="../static/software/postman_body.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman Interface" src="../static/software/postman_body.png" /></a></p>
-<ol>
-<li>
-<p><strong>curl</strong>:</p>
+<hr />
+<h2 id="_2">🚀 Как проверять ограничения</h2>
+<h3 id="1">1. Параметры запроса</h3>
 <ul>
-<li>
-<p>Утилита командной строки для отправки HTTP-запросов.</p>
-</li>
-<li>
-<p>Очень мощная и гибкая, работает в терминале Linux, macOS и Windows (через WSL или PowerShell).</p>
-</li>
-<li>
-<p>Подходит для быстрого тестирования и автоматизации.</p>
-</li>
+<li>Отправь запрос с минимальным, максимальным и неверным значением</li>
+<li>Ожидаемый результат: сервер возвращает <code>400 Bad Request</code> с описанием ошибки</li>
 </ul>
-</li>
-</ol>
-<p><strong>Пример команды</strong>:</p>
-<pre><code class="language-json">curl -X GET https://api.example.com/users/123
+<p><strong>Пример запроса (Postman/Insomnia):</strong></p>
+<pre><code class="language-json">POST /api/v1/users
+Content-Type: application/json
+
+{
+  &quot;username&quot;: &quot;a&quot;,
+  &quot;email&quot;: &quot;not-an-email&quot;,
+  &quot;age&quot;: 10
+}
 </code></pre>
-<ol>
-<li>
-<p><strong>Insomnia</strong>:</p>
+<p><strong>Ожидаемый ответ:</strong></p>
+<pre><code class="language-json">{
+  &quot;error&quot;: &quot;Возраст должен быть &gt;= 18, email неверный&quot;
+}
+</code></pre>
+<p><strong>2. Ограничения авторизации</strong></p>
 <ul>
 <li>
-<p>Ещё один удобный графический клиент для API.</p>
+<p>Попробуй выполнить запрос без токена или с токеном другого пользователя</p>
 </li>
 <li>
-<p>Похож на Postman, но с другим интерфейсом.</p>
-</li>
-<li>
-<p>Поддерживает REST, GraphQL и другие типы API.</p>
-</li>
-<li>
-<p>Есть возможности для создания переменных и сценариев.</p>
+<p>Ожидаемый результат: <code>401 Unauthorized</code>или <code>403 Forbidden</code></p>
 </li>
 </ul>
+<p>Пример запроса на защищённый эндпоинт:</p>
+<pre><code>GET /api/v1/me
+Authorization: Bearer &lt;невалидный_токен&gt;
+</code></pre>
+<p><strong>3. Rate limiting</strong></p>
+<ul>
+<li>
+<p>Отправь много запросов подряд к одному эндпоинту</p>
 </li>
-</ol>
-<p><a class="glightbox" href="../static/software/insomnia_interface.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Insomnia Interface" src="../static/software/insomnia_interface.png" /></a></p>
+<li>
+<p>Ожидаемый результат: сервер вернёт <code>429 Too Many Requests</code></p>
+</li>
+</ul>
+<p><strong>4. Ограничения объема данных</strong></p>
+<ul>
+<li>
+<p>Попробуй отправить слишком большой <code>JSON</code> или массив</p>
+</li>
+<li>
+<p>Ожидаемый результат: <code>413 Payload Too Large</code> или <code>400 Bad Request</code></p>
+</li>
+</ul>
+<p><strong>5. Проверка бизнес-логики</strong></p>
+<ul>
+<li>
+<p>Выполни сценарии, которые нарушают правила сервиса</p>
+</li>
+<li>
+<p>Например, удалить пользователя с активными заказами</p>
+</li>
+<li>
+<p>Сервер должен вернуть понятное сообщение об ошибке</p>
+</li>
+</ul>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:27:51.452302+00:00
+  Docs Build Date UTC : 2025-08-15 01:27:51.449686+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});

@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-practice.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-timeouts.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Как делать запросы в API - Manual QA docs</title>
+        <title>Тестирование ошибок сети и таймаутов - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -227,7 +227,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-practice.html">Как делать запросы в API</a>
 </li>
 
@@ -272,7 +272,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-timeouts.html">Тестирование ошибок сети и таймаутов</a>
 </li>
 
@@ -552,7 +552,13 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Как делать запросы к API — инструменты</a></li>
+              <li><a href="#_1">🌐 Тестирование ошибок сети и таймаутов</a></li>
+              
+                  <li class="child"><a href="#_2">📌 Основные сценарии</a></li>
+              
+                  <li class="child"><a href="#_3">🚀 Как тестировать</a></li>
+              
+                  <li class="child"><a href="#qa">✅ Чеклист для QA</a></li>
               
             
         </ul>
@@ -567,12 +573,12 @@
       
         <div class="prev">
           
-            <a href="data-formats.html" title="Форматы данных">&#8592; Previous Page</a>
+            <a href="api-limits.html" title="Проверка ограничений API">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="api-structure.html" title="Структура запроса в API"/>Next Page &#8594;</a>
+        <a href="api-tests.html" title="Как проверять ответы API"/>Next Page &#8594;</a>
           
         </div>
       
@@ -581,86 +587,84 @@
 
       
         <div id="body">
-            <h1 id="api">Как делать запросы к API — инструменты</h1>
-<p><code>API</code> — это интерфейс для общения программ и приложений. Чтобы с ним работать, нужно уметь отправлять запросы и получать ответы. Для этого используют специальные инструменты.
-Популярные инструменты для работы с API</p>
+            <h1 id="_1">🌐 Тестирование ошибок сети и таймаутов</h1>
+<p>При тестировании API важно проверять, как сервер и клиент ведут себя при проблемах сети или длительном ожидании ответа. Такие проверки помогают выявить уязвимости и ошибки в обработке исключительных ситуаций.</p>
+<hr />
+<h2 id="_2">📌 Основные сценарии</h2>
 <ol>
+<li><strong>Таймауты запроса</strong></li>
+<li>Сервер долго отвечает → клиент должен корректно завершить запрос</li>
 <li>
-<p><strong>Postman</strong>:</p>
-<ul>
-<li>
-<p>Графический инструмент с удобным интерфейсом.</p>
+<p>В Postman или Insomnia можно задать таймаут вручную</p>
 </li>
 <li>
-<p>Позволяет создавать и отправлять запросы разных типов (<code>GET</code>, <code>POST</code>, <code>PUT</code> и др.).</p>
+<p><strong>Отсутствие сети</strong></p>
+</li>
+<li>Сервер недоступен → клиент должен отобразить понятное сообщение об ошибке</li>
+<li>
+<p>Эмуляция отключения интернета или недоступного хоста</p>
 </li>
 <li>
-<p>Можно сохранять запросы, группировать их, создавать сценарии тестирования.</p>
+<p><strong>Нестабильная сеть</strong></p>
+</li>
+<li>Пакеты теряются или приходят с задержкой</li>
+<li>
+<p>Проверка повторной отправки запросов и корректного восстановления соединения</p>
 </li>
 <li>
-<p>Подходит и новичкам, и опытным тестировщикам.</p>
+<p><strong>HTTP ошибки сети</strong></p>
 </li>
-</ul>
-<p><strong>Пример:</strong></p>
-<ul>
-<li>
-<p>Вводишь URL и метод запроса.</p>
-</li>
-<li>
-<p>Добавляешь заголовки и тело (если нужно).</p>
-</li>
-<li>
-<p>Нажимаешь кнопку «Send» и смотришь ответ сервера.</p>
-</li>
-</ul>
-</li>
+<li>502 Bad Gateway</li>
+<li>503 Service Unavailable</li>
+<li>504 Gateway Timeout</li>
 </ol>
-<p><a class="glightbox" href="../static/software/postman_body.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman Interface" src="../static/software/postman_body.png" /></a></p>
-<ol>
-<li>
-<p><strong>curl</strong>:</p>
+<hr />
+<h2 id="_3">🚀 Как тестировать</h2>
+<h3 id="1">1. Таймауты</h3>
 <ul>
-<li>
-<p>Утилита командной строки для отправки HTTP-запросов.</p>
-</li>
-<li>
-<p>Очень мощная и гибкая, работает в терминале Linux, macOS и Windows (через WSL или PowerShell).</p>
-</li>
-<li>
-<p>Подходит для быстрого тестирования и автоматизации.</p>
-</li>
+<li>В Postman:</li>
+<li>Настрой <code>Request Timeout</code> на низкое значение (например, 1000 мс)</li>
+<li>Отправь запрос к эндпоинту с задержкой</li>
+<li>Ожидаемый результат: <code>Request timeout</code> и корректная обработка ошибки</li>
+<li>В коде: проверить, что клиент не "виснет" при долгом ответе сервера</li>
 </ul>
-</li>
-</ol>
-<p><strong>Пример команды</strong>:</p>
-<pre><code class="language-json">curl -X GET https://api.example.com/users/123
-</code></pre>
-<ol>
-<li>
-<p><strong>Insomnia</strong>:</p>
+<h3 id="2">2. Недоступный сервер</h3>
 <ul>
-<li>
-<p>Ещё один удобный графический клиент для API.</p>
-</li>
-<li>
-<p>Похож на Postman, но с другим интерфейсом.</p>
-</li>
-<li>
-<p>Поддерживает REST, GraphQL и другие типы API.</p>
-</li>
-<li>
-<p>Есть возможности для создания переменных и сценариев.</p>
-</li>
+<li>Изменить URL на несуществующий хост</li>
+<li>Ожидаемый результат: <code>Could not resolve host</code> или соответствующая ошибка в клиенте</li>
 </ul>
-</li>
-</ol>
-<p><a class="glightbox" href="../static/software/insomnia_interface.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Insomnia Interface" src="../static/software/insomnia_interface.png" /></a></p>
+<h3 id="3">3. Нестабильная сеть</h3>
+<ul>
+<li>Использовать эмуляторы сетевых условий (например, DevTools → Network Throttling)</li>
+<li>Проверить корректное повторное подключение и обработку ошибок</li>
+</ul>
+<h3 id="4-http">4. Симуляция HTTP ошибок</h3>
+<ul>
+<li>Использовать mock-сервер или тестовые данные</li>
+<li>Генерировать ответы с кодами 502, 503, 504</li>
+<li>Проверять, что клиент или система отображает корректное сообщение пользователю</li>
+</ul>
+<hr />
+<h2 id="qa">✅ Чеклист для QA</h2>
+<ul>
+<li>[ ] Проверка таймаутов запросов</li>
+<li>[ ] Проверка поведения при отсутствии сети</li>
+<li>[ ] Проверка обработки нестабильной сети</li>
+<li>[ ] Проверка обработки ошибок HTTP 5xx</li>
+<li>[ ] Проверка логирования ошибок</li>
+<li>[ ] Проверка повторной отправки запросов (retry)</li>
+<li>[ ] Проверка уведомлений для пользователя при проблемах сети</li>
+</ul>
+<hr />
+<blockquote>
+<p>⚠️ Совет: тестирование нестабильной сети и таймаутов помогает обнаружить скрытые баги, которые могут возникать в реальной эксплуатации, особенно на мобильных устройствах или при медленном интернет-соединении.</p>
+</blockquote>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:27:51.452302+00:00
+  Docs Build Date UTC : 2025-08-15 01:27:51.457627+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
