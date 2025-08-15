@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/openapi.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-checklists.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Документация API в OpenAPI/Swagger - Manual QA docs</title>
+        <title>Чеклисты QA для эндпоинтов - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -329,7 +329,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-checklists.html">Чеклисты QA для эндпоинтов</a>
 </li>
 
@@ -350,7 +350,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="openapi.html">Документация API в OpenAPI/Swagger</a>
 </li>
 
@@ -552,15 +552,21 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api-openapi-swagger-qa">📄 Документация API в OpenAPI / Swagger (глазами QA)</a></li>
+              <li><a href="#qa-api">📝 Чеклисты QA для эндпоинтов API</a></li>
               
-                  <li class="child"><a href="#qa-swagger">🎯 Цели QA при работе со Swagger</a></li>
+                  <li class="child"><a href="#_1">📌 Общие проверки для всех эндпоинтов</a></li>
               
-                  <li class="child"><a href="#swagger-qa">🔍 Структура документации Swagger глазами QA</a></li>
+                  <li class="child"><a href="#get">🔹 GET эндпоинты</a></li>
               
-                  <li class="child"><a href="#-qa-swagger-ui">🧪 Чек-лист QA для работы со Swagger UI</a></li>
+                  <li class="child"><a href="#post">🔹 POST эндпоинты</a></li>
               
-                  <li class="child"><a href="#qa-swagger-ui">🧩 Пример работы QA со Swagger UI</a></li>
+                  <li class="child"><a href="#put-patch">🔹 PUT / PATCH эндпоинты</a></li>
+              
+                  <li class="child"><a href="#delete">🔹 DELETE эндпоинты</a></li>
+              
+                  <li class="child"><a href="#_2">🔹 Безопасность и авторизация</a></li>
+              
+                  <li class="child"><a href="#_3">🔹 Негативные сценарии</a></li>
               
             
         </ul>
@@ -575,12 +581,12 @@
       
         <div class="prev">
           
-            <a href="api-checklists.html" title="Чеклисты QA для эндпоинтов">&#8592; Previous Page</a>
+            <a href="api-errors.html" title="Типичные ошибки в API и как их находить">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="api-errors.html" title="Типичные ошибки в API и как их находить"/>Next Page &#8594;</a>
+        <a href="openapi.html" title="Документация API в OpenAPI/Swagger"/>Next Page &#8594;</a>
           
         </div>
       
@@ -589,124 +595,84 @@
 
       
         <div id="body">
-            <h1 id="api-openapi-swagger-qa">📄 Документация API в OpenAPI / Swagger (глазами QA)</h1>
-<p><strong>Swagger</strong> (OpenAPI Specification) — это интерактивная документация для API, которая позволяет тестировщику:
-- быстро понять, какие методы есть в API,
-- узнать, какие данные они принимают и возвращают,
-- тестировать API прямо из браузера без Postman или Insomnia.</p>
-<h2 id="qa-swagger">🎯 Цели QA при работе со Swagger</h2>
-<ol>
-<li><strong>Проверить полноту документации</strong>:</li>
-<li>Все ли эндпоинты задокументированы?</li>
-<li>Совпадают ли описания с фактическим поведением API?</li>
-<li>
-<p>Есть ли примеры запросов и ответов?</p>
-</li>
-<li>
-<p><strong>Проверить соответствие спецификации и реализации</strong>:</p>
-</li>
-<li>Типы данных (<code>string</code>, <code>integer</code>, <code>boolean</code>) совпадают?</li>
-<li>Обязательные поля (<code>required</code>) действительно обязательны?</li>
-<li>
-<p>Описанные коды ошибок реально возвращаются?</p>
-</li>
-<li>
-<p><strong>Найти несоответствия и баги</strong>:</p>
-</li>
-<li>Метод описан как <code>GET</code>, а по факту изменяет данные (нарушение REST).</li>
-<li>В описании указано поле, которое сервер не возвращает.</li>
-<li>Нет описания для кодов ошибок (<code>400</code>, <code>401</code>, <code>500</code>).</li>
-</ol>
+            <h1 id="qa-api">📝 Чеклисты QA для эндпоинтов API</h1>
+<p>При тестировании API важно иметь структурированный чеклист для каждого эндпоинта. Он помогает не пропустить важные проверки и систематизировать работу QA.</p>
 <hr />
-<h2 id="swagger-qa">🔍 Структура документации Swagger глазами QA</h2>
+<h2 id="_1">📌 Общие проверки для всех эндпоинтов</h2>
 <ul>
-<li><strong>Метод и путь</strong> (<code>GET /users/{id}</code>)</li>
-<li><strong>Описание</strong> — должно объяснять назначение метода.</li>
-<li><strong>Параметры</strong>:</li>
-<li><strong>Path</strong> — обязателен ли <code>id</code>?</li>
-<li><strong>Query</strong> — фильтры, сортировка.</li>
-<li><strong>Body</strong> — формат JSON, обязательные поля.</li>
-<li><strong>Коды ответов</strong>:</li>
-<li>Указаны ли все возможные (<code>200</code>, <code>400</code>, <code>401</code>, <code>404</code>, <code>500</code>)?</li>
-<li><strong>Примеры</strong>:</li>
-<li>Есть ли корректный пример запроса и ответа?</li>
+<li>[ ] Эндпоинт доступен (статус ответа 200/201 для успешного запроса)</li>
+<li>[ ] Проверка корректного HTTP-метода (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code>)</li>
+<li>[ ] Проверка URL и пути (path)</li>
+<li>[ ] Проверка заголовков запроса (Headers)</li>
+<li>[ ] Проверка обязательных параметров (query, path, body)</li>
+<li>[ ] Проверка формата данных в запросе и ответе (<code>JSON</code>, <code>XML</code>, <code>form-data</code>)</li>
+<li>[ ] Проверка кодов ответа (<code>2xx</code>, <code>4xx</code>, <code>5xx</code>)</li>
+<li>[ ] Проверка сообщений об ошибках</li>
+<li>[ ] Проверка времени отклика (response time)</li>
+<li>[ ] Проверка авторизации и токенов (если требуется)</li>
 </ul>
 <hr />
-<h2 id="-qa-swagger-ui">🧪 Чек-лист QA для работы со Swagger UI</h2>
+<h2 id="get">🔹 GET эндпоинты</h2>
 <ul>
-<li>[ ] Открыть <code>/swagger</code> или <code>/docs</code> и проверить наличие всех методов.</li>
-<li>[ ] Для каждого метода выполнить тест через <strong>Try it out</strong>:</li>
-<li>[ ] Корректный запрос → ожидаемый <code>2xx</code> ответ.</li>
-<li>[ ] Некорректные параметры → соответствующий <code>4xx</code> ответ.</li>
-<li>[ ] Отсутствие авторизации → <code>401 Unauthorized</code>.</li>
-<li>[ ] Сверить схему <code>request/response</code> в Swagger с реальными данными.</li>
-<li>[ ] Проверить, что примеры в документации рабочие (копируются и дают результат).</li>
-<li>[ ] Убедиться, что описаны все обязательные параметры.</li>
-<li>[ ] Проверить, что указаны коды ошибок и их описание.</li>
+<li>[ ] Возвращает корректные данные</li>
+<li>[ ] Фильтры и сортировка работают корректно</li>
+<li>[ ] Пагинация возвращает правильные страницы и элементы</li>
+<li>[ ] Обработка пустых данных (например, когда ресурсы отсутствуют)</li>
+<li>[ ] Проверка кеширования и заголовков <code>ETag</code>, <code>Last-Modified</code></li>
 </ul>
 <hr />
-<h2 id="qa-swagger-ui">🧩 Пример работы QA со Swagger UI</h2>
-<p><strong>Сценарий: тест регистрации пользователя</strong></p>
-<ol>
-<li>Открываем метод <code>POST /users/register</code>.</li>
-<li>Читаем описание и схему запроса:</li>
-</ol>
-<pre><code class="language-json">   {
-     &quot;name&quot;: &quot;string&quot;,
-     &quot;email&quot;: &quot;string&quot;,
-     &quot;password&quot;: &quot;string&quot;
-   }
-</code></pre>
-<ol>
-<li>
-<p>Запускаем <code>Try it out</code> → вводим валидные данные.</p>
-</li>
-<li>
-<p>Проверяем ответ:</p>
-</li>
-<li>
-<p>Код <code>201 Created</code></p>
-</li>
-<li>
-<p><code>JSON</code> содержит <code>id</code>, <code>name</code>, <code>email</code>.</p>
-</li>
-<li>
-<p>Отправляем запрос без <code>email</code> → ожидаем <code>400 Bad Request</code>.</p>
-</li>
-<li>
-<p>Сравниваем с описанием в Swagger:</p>
-</li>
-<li>
-<p>Если ошибка есть, но в документации нет — это баг в документации.</p>
-</li>
-</ol>
-<p><strong>⚠️ Типичные ошибки, которые находит QA через Swagger</strong></p>
+<h2 id="post">🔹 POST эндпоинты</h2>
 <ul>
-<li>
-<p>Несоответствие типов данных (например, <code>id</code> описан как <code>integer</code>, но приходит как <code>string</code>).</p>
-</li>
-<li>
-<p>Нет описания обязательных полей.</p>
-</li>
-<li>
-<p>Отсутствуют коды ошибок в документации.</p>
-</li>
-<li>
-<p>Пример запроса/ответа не соответствует реальному.</p>
-</li>
-<li>
-<p>Эндпоинт работает, но в <code>Swagger</code> его нет.</p>
-</li>
-<li>
-<p>В <code>Swagger</code> указана одна структура <code>JSON</code>, а сервер возвращает другую.</p>
-</li>
+<li>[ ] Успешное создание ресурса</li>
+<li>[ ] Проверка обязательных и необязательных полей</li>
+<li>[ ] Проверка валидации данных (тип, длина, формат)</li>
+<li>[ ] Проверка уникальности полей (например, email, username)</li>
+<li>[ ] Обработка некорректного JSON</li>
+<li>[ ] Проверка кода ответа 201 Created и содержимого тела ответа</li>
 </ul>
+<hr />
+<h2 id="put-patch">🔹 PUT / PATCH эндпоинты</h2>
+<ul>
+<li>[ ] Успешное обновление ресурса</li>
+<li>[ ] Проверка частичного обновления (PATCH)</li>
+<li>[ ] Проверка валидации данных</li>
+<li>[ ] Проверка кода ответа 200 OK и обновлённого содержимого</li>
+</ul>
+<hr />
+<h2 id="delete">🔹 DELETE эндпоинты</h2>
+<ul>
+<li>[ ] Успешное удаление ресурса</li>
+<li>[ ] Проверка кода ответа 204 No Content</li>
+<li>[ ] Проверка удаления связанных данных (если есть зависимости)</li>
+<li>[ ] Проверка повторного удаления (должно возвращать 404)</li>
+</ul>
+<hr />
+<h2 id="_2">🔹 Безопасность и авторизация</h2>
+<ul>
+<li>[ ] Доступ без токена запрещён (401 Unauthorized)</li>
+<li>[ ] Доступ с неправильным токеном запрещён</li>
+<li>[ ] Проверка прав пользователя (RBAC)</li>
+<li>[ ] Проверка CSRF и других защитных механизмов</li>
+</ul>
+<hr />
+<h2 id="_3">🔹 Негативные сценарии</h2>
+<ul>
+<li>[ ] Некорректный формат JSON</li>
+<li>[ ] Пропущенные обязательные поля</li>
+<li>[ ] Неверные типы данных</li>
+<li>[ ] Недоступный сервер или таймаут</li>
+<li>[ ] Ошибки 4xx и 5xx корректно обрабатываются и логируются</li>
+</ul>
+<hr />
+<blockquote>
+<p>⚠️ Совет: можно создать отдельный чеклист для каждого эндпоинта с конкретными параметрами и ожидаемыми результатами, чтобы быстро проверять их после изменений в API.</p>
+</blockquote>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 01:29:29.753264+00:00
+  Docs Build Date UTC : 2025-08-15 01:29:29.742200+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
