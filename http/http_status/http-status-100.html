@@ -19,12 +19,15 @@
         <script src="../../js/theme.js" defer></script>
       
         <script> var base_url = "../.." </script>
-        <script src="../../search/main.js" defer></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 
-</head>
+ <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
 <body>
     <header class="header">
         <a id="nav-toggle" class="pizza">&#9776;</a>
@@ -246,7 +249,7 @@
 -->
 
 <li >
-    <a href="../../api/api-tests.md">Как проверять ответы API</a>
+    <a href="../../api/api-tests.html">Как проверять ответы API</a>
 </li>
 
         
@@ -255,7 +258,7 @@
 -->
 
 <li >
-    <a href="../../api/api-errors.md">Типичные ошибки в API и как их находить</a>
+    <a href="../../api/api-errors.html">Типичные ошибки в API и как их находить</a>
 </li>
 
         
@@ -294,7 +297,7 @@
 -->
 
 <li >
-    <a href="../../api/api-errors.md">Работа с ошибками</a>
+    <a href="../../api/api-errors.html">Типичные ошибки в API и как их находить</a>
 </li>
 
         
@@ -315,7 +318,7 @@
 -->
 
 <li >
-    <a href="../../api/api-registration.md">Регистрация пользователя</a>
+    <a href="../../api/api-registration.html">Регистрация пользователя</a>
 </li>
 
         
@@ -324,7 +327,7 @@
 -->
 
 <li >
-    <a href="../../api/api-auth.md">Авторизация и получение токена</a>
+    <a href="../../api/api-auth.html">Авторизация и получение токена</a>
 </li>
 
         
@@ -507,8 +510,9 @@
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-12 06:52:06.133761+00:00
+  Docs Build Date UTC : 2025-08-15 00:36:15.160284+00:00
   -->
 </div>
-</body>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+</script></body>
 </html>

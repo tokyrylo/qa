@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-types.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-registration.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Типы API - Manual QA docs</title>
+        <title>Регистрация пользователя - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -179,7 +179,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-types.html">Типы API</a>
 </li>
 
@@ -317,7 +317,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-registration.html">Регистрация пользователя</a>
 </li>
 
@@ -444,7 +444,13 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Типы API</a></li>
+              <li><a href="#api">📝 Регистрация пользователя через API</a></li>
+              
+                  <li class="child"><a href="#postman">🚀 Регистрация в Postman</a></li>
+              
+                  <li class="child"><a href="#insomnia">Регистрация в Insomnia</a></li>
+              
+                  <li class="child"><a href="#swagger-ui">Регистрация в Swagger UI</a></li>
               
             
         </ul>
@@ -459,12 +465,12 @@
       
         <div class="prev">
           
-            <a href="api-intro.html" title="Введение в API">&#8592; Previous Page</a>
+            <a href="api-errors.html" title="Типичные ошибки в API и как их находить">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="data-formats.html" title="Форматы данных"/>Next Page &#8594;</a>
+        <a href="api-auth.html" title="Авторизация и получение токена"/>Next Page &#8594;</a>
           
         </div>
       
@@ -473,186 +479,116 @@
 
       
         <div id="body">
-            <h1 id="api">Типы API</h1>
-<p><code>API</code> бывают разных видов — в зависимости от того, как они устроены и как обмениваются данными. Рассмотрим основные типы:</p>
+            <h1 id="api">📝 Регистрация пользователя через API</h1>
+<p>Рассмотрим, как отправить запрос на регистрацию нового пользователя тремя способами: <strong>Postman</strong>,</p>
+<h2 id="postman">🚀 Регистрация в Postman</h2>
+<p><strong>1. Открой Postman и создайте новый запрос.</strong></p>
+<ol>
+<li><strong>В поле метода выбери <code>POST</code>.</strong></li>
+</ol>
+<p><strong>3. Введи URL, например</strong>:</p>
+<pre><code class="language-json">http://localhost:8000/api/v1/register (*)
+</code></pre>
+<p><a class="glightbox" href="../static/software/postman_register_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman registration" src="../static/software/postman_register_1.png" /></a></p>
+<p><strong>4. Перейди во вкладку Headers и добавь</strong>:</p>
+<pre><code class="language-json">Content-Type: application/json
+</code></pre>
+<p><a class="glightbox" href="../static/software/postman_headers.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman headers" src="../static/software/postman_headers.png" /></a></p>
 <ol>
 <li>
-<p><strong>REST API (Representational State Transfer)</strong>:</p>
-<ul>
-<li>
-<p>Самый популярный и простой тип API, который использует стандартные HTTP-запросы.</p>
+<p>Перейди во вкладку <strong>Body</strong>, выбери <strong>raw</strong> и формат <strong>JSON</strong>.</p>
 </li>
 <li>
-<p>Работает по принципу ресурсов: каждый ресурс (например, пользователь, товар) имеет свой URL.</p>
-</li>
-<li>
-<p>Использует стандартные HTTP-методы:</p>
-<ul>
-<li>
-<p><code>GET</code> — получить данные</p>
-</li>
-<li>
-<p><code>POST</code> — создать новый ресурс</p>
-</li>
-<li>
-<p><code>PUT</code> — обновить ресурс</p>
-</li>
-<li>
-<p><code>DELETE</code> — удалить ресурс</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Формат данных обычно JSON — удобный для чтения и обработки.</p>
-</li>
-</ul>
+<p>Вставь тело запроса:</p>
 </li>
 </ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>REST</code> — это официант, который знает, как приносить блюда по заказу, заменять их или убирать, используя понятные команды.</p>
-<p><strong>Пример запроса GET (получить информацию о пользователе):</strong></p>
-<pre><code class="language-json">GET /users/123 HTTP/1.1
-Host: api.example.com
-Accept: application/json
-</code></pre>
-<p><strong>Пример ответа:</strong></p>
 <pre><code class="language-json">{
-  &quot;id&quot;: 123,
-  &quot;name&quot;: &quot;Иван&quot;,
-  &quot;email&quot;: &quot;ivan@example.com&quot;
+  &quot;email&quot;: &quot;user10@example.com&quot;,
+  &quot;username&quot;: &quot;test_user&quot;,
+  &quot;password&quot;: &quot;Qq!123456&quot;,
+  &quot;name&quot;: &quot;string&quot;
 }
 </code></pre>
-<p><strong>Пример запроса POST (создать нового пользователя):</strong></p>
-<pre><code class="language-json">POST /users HTTP/1.1
-Host: api.example.com
-Content-Type: application/json
-
-{
-  &quot;name&quot;: &quot;Ольга&quot;,
-  &quot;email&quot;: &quot;olga@example.com&quot;
-}
+<p><a class="glightbox" href="../static/software/postman_body.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman Request Body" src="../static/software/postman_body.png" /></a></p>
+<ol>
+<li>Нажми <strong>Send</strong> — внизу появится ответ от сервера</li>
+</ol>
+<p><a class="glightbox" href="../static/software/postman_register_response.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Postman Response" src="../static/software/postman_register_response.png" /></a></p>
+<h2 id="insomnia">Регистрация в Insomnia</h2>
+<ol>
+<li>
+<p>Создай новый запрос (<strong>New Request</strong>).</p>
+</li>
+<li>
+<p>Выбери метод <strong>POST</strong> и укажи URL:</p>
+</li>
+</ol>
+<pre><code class="language-json">http://localhost:8000/api/v1/register (*)
 </code></pre>
-<p><strong>Пример ответа:</strong></p>
+<p><a class="glightbox" href="../static/software/insomnia_registration_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Insomnia URL" src="../static/software/insomnia_registration_1.png" /></a></p>
+<ol>
+<li>
+<p>Во вкладке Body выбери JSON.</p>
+</li>
+<li>
+<p>Вставь:</p>
+</li>
+</ol>
 <pre><code class="language-json">{
-  &quot;id&quot;: 124,
-  &quot;name&quot;: &quot;Ольга&quot;,
-  &quot;email&quot;: &quot;olga@example.com&quot;
+  &quot;email&quot;: &quot;user11@example.com&quot;,
+  &quot;username&quot;: &quot;test_user&quot;,
+  &quot;password&quot;: &quot;Qq!123456&quot;,
+  &quot;name&quot;: &quot;string&quot;
 }
 </code></pre>
+<p><a class="glightbox" href="../static/software/insomnia_request_body.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Insomnia Request Body" src="../static/software/insomnia_request_body.png" /></a></p>
+<ol>
+<li>Нажми <strong>Send</strong> и проверь ответ.</li>
+</ol>
+<p><a class="glightbox" href="../static/software/insomnia_response.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Insomnia Response Body" src="../static/software/insomnia_response.png" /></a></p>
+<h2 id="swagger-ui">Регистрация в Swagger UI</h2>
 <ol>
 <li>
-<p><strong>SOAP (Simple Object Access Protocol)</strong>:</p>
+<p>Перейди на страницу <code>Swagger</code>-документации API (например, http://localhost:8000/api/v1/register).</p>
+</li>
+<li>
+<p>Найди эндпоинт <code>POST /api/v1/register</code>.
+<a class="glightbox" href="../static/software/swagger_register.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Swagger Endpoint" src="../static/software/swagger_register.png" /></a></p>
+</li>
+<li>
+<p>Нажми <strong>Try it out</strong>.</p>
+</li>
+<li>
+<p>Заполни поля:</p>
+</li>
+<li>
+<p><code>"email": "user12@example.com"</code></p>
+</li>
+<li><code>"username": "test2_user"</code></li>
+<li><code>"password": "Qq!123456"</code></li>
+<li><code>"name": "string"</code></li>
+</ol>
+<p><a class="glightbox" href="../static/software/swagger_body.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Swagger body" src="../static/software/swagger_body.png" /></a></p>
+<p>Нажми <strong>Execute</strong> — <code>Swagger</code> покажет и отправленный запрос, и ответ от сервера.</p>
+<p><a class="glightbox" href="../static/software/swagger_response.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Swagger Response" src="../static/software/swagger_response.png" /></a></p>
+<p>Если при регистрации возвращается ошибка <code>400 Bad Request</code>, проверь:</p>
 <ul>
 <li>
-<p>Более старый и строгий стандарт обмена сообщениями между программами.</p>
+<p>правильность формата <code>JSON</code> (кавычки, запятые);</p>
 </li>
 <li>
-<p>Использует XML для передачи данных — сложнее читать и писать.</p>
+<p>обязательные поля;</p>
 </li>
 <li>
-<p>Очень формален: описывает, какие операции доступны и как их вызывать.</p>
-</li>
-<li>
-<p>Часто применяется в корпоративных и банковских системах.</p>
+<p>уникальность email.</p>
 </li>
 </ul>
-</li>
-</ol>
-<p><strong>Пример SOAP-запроса (получить информацию о пользователе):</strong></p>
-<pre><code class="language-xml">&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt;
-  &lt;soap:Body&gt;
-    &lt;GetUserDetails xmlns=&quot;http://example.com/&quot;&gt;
-      &lt;UserId&gt;123&lt;/UserId&gt;
-    &lt;/GetUserDetails&gt;
-  &lt;/soap:Body&gt;
-&lt;/soap:Envelope&gt;    
-</code></pre>
-<p><strong>Пример SOAP-ответа:</strong></p>
-<pre><code class="language-xml">&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt;
-  &lt;soap:Body&gt;
-    &lt;GetUserDetailsResponse xmlns=&quot;http://example.com/&quot;&gt;
-      &lt;User&gt;
-        &lt;Id&gt;123&lt;/Id&gt;
-        &lt;Name&gt;Иван&lt;/Name&gt;
-        &lt;Email&gt;ivan@example.com&lt;/Email&gt;
-      &lt;/User&gt;
-    &lt;/GetUserDetailsResponse&gt;
-  &lt;/soap:Body&gt;
-&lt;/soap:Envelope&gt;
-</code></pre>
-<p><strong>Аналогия с рестораном</strong>:
-<code>SOAP</code> — официант, который работает по очень точным инструкциям и протоколам, где каждая фраза и действие строго регламентированы.</p>
-<ol>
-<li>
-<p><strong>GraphQL</strong>:</p>
-<ul>
-<li>
-<p>Современный и гибкий способ общения с <code>API</code>, разработанный <code>Facebook</code>.</p>
-</li>
-<li>
-<p>Позволяет клиенту точно указать, какие данные ему нужны, и получать только их.</p>
-</li>
-<li>
-<p>Можно делать один запрос, который заменяет несколько запросов в <code>REST</code>.</p>
-</li>
-<li>
-<p>Подходит, когда данные сложные и имеют много связей.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>GraphQL</code> — это официант, который внимательно слушает твой заказ и приносит только те блюда и ингредиенты, которые ты попросил, без лишнего.</p>
-<p><strong>Пример запроса GraphQL:</strong></p>
-<pre><code class="language-graphql">{
-  user(id: &quot;123&quot;) {
-    name
-    email
-    orders {
-      id
-      total
-    }
-  }
-}
-</code></pre>
-<p><strong>Пример ответа:</strong></p>
-<pre><code class="language-json">{
-  &quot;data&quot;: {
-    &quot;user&quot;: {
-      &quot;name&quot;: &quot;Иван&quot;,
-      &quot;email&quot;: &quot;ivan@example.com&quot;,
-      &quot;orders&quot;: [
-        { &quot;id&quot;: &quot;1&quot;, &quot;total&quot;: 100 },
-        { &quot;id&quot;: &quot;2&quot;, &quot;total&quot;: 150 }
-      ]
-    }
-  }
-}
-</code></pre>
-<ol>
-<li>
-<p><strong>WebSocket API</strong>:</p>
-<ul>
-<li>
-<p>Позволяет установить постоянное двунаправленное соединение между клиентом и сервером.</p>
-</li>
-<li>
-<p>Используется для приложений в реальном времени: чаты, игры, торговые площадки.</p>
-</li>
-<li>
-<p>Отличается от <code>REST</code> и <code>SOAP</code> тем, что данные идут постоянно, а не по отдельным запросам.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>WebSocket</code> — это официант, который постоянно рядом с тобой, готов слушать и приносить блюда сразу, как только ты попросишь, без повторных звонков.</p>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 00:36:15.156389+00:00
+  Docs Build Date UTC : 2025-08-15 00:36:15.154410+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});

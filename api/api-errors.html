@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-types.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-errors.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Типы API - Manual QA docs</title>
+        <title>Типичные ошибки в API и как их находить - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -179,7 +179,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-types.html">Типы API</a>
 </li>
 
@@ -257,7 +257,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-errors.html">Типичные ошибки в API и как их находить</a>
 </li>
 
@@ -296,7 +296,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="api-errors.html">Типичные ошибки в API и как их находить</a>
 </li>
 
@@ -444,7 +444,23 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Типы API</a></li>
+              <li><a href="#api">⚠️ Типичные ошибки в API и как их находить</a></li>
+              
+                  <li class="child"><a href="#1-">1. Неверные статус-коды</a></li>
+              
+                  <li class="child"><a href="#2">2. Несоответствие формата данных</a></li>
+              
+                  <li class="child"><a href="#3">3. Пропавшие или лишние поля</a></li>
+              
+                  <li class="child"><a href="#4">4. Некорректные типы данных</a></li>
+              
+                  <li class="child"><a href="#5">5. Логические ошибки в данных</a></li>
+              
+                  <li class="child"><a href="#6">6. Медленные ответы</a></li>
+              
+                  <li class="child"><a href="#7">7. Ошибки безопасности</a></li>
+              
+                  <li class="child"><a href="#8">8. Необработанные ошибки</a></li>
               
             
         </ul>
@@ -459,12 +475,12 @@
       
         <div class="prev">
           
-            <a href="api-intro.html" title="Введение в API">&#8592; Previous Page</a>
+            <a href="api-practice.html" title="Как делать запросы в API">&#8592; Previous Page</a>
           
         </div>
          <div class="next">
           
-        <a href="data-formats.html" title="Форматы данных"/>Next Page &#8594;</a>
+        <a href="api-registration.html" title="Регистрация пользователя"/>Next Page &#8594;</a>
           
         </div>
       
@@ -473,186 +489,77 @@
 
       
         <div id="body">
-            <h1 id="api">Типы API</h1>
-<p><code>API</code> бывают разных видов — в зависимости от того, как они устроены и как обмениваются данными. Рассмотрим основные типы:</p>
-<ol>
-<li>
-<p><strong>REST API (Representational State Transfer)</strong>:</p>
-<ul>
-<li>
-<p>Самый популярный и простой тип API, который использует стандартные HTTP-запросы.</p>
-</li>
-<li>
-<p>Работает по принципу ресурсов: каждый ресурс (например, пользователь, товар) имеет свой URL.</p>
-</li>
-<li>
-<p>Использует стандартные HTTP-методы:</p>
-<ul>
-<li>
-<p><code>GET</code> — получить данные</p>
-</li>
-<li>
-<p><code>POST</code> — создать новый ресурс</p>
-</li>
-<li>
-<p><code>PUT</code> — обновить ресурс</p>
-</li>
-<li>
-<p><code>DELETE</code> — удалить ресурс</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Формат данных обычно JSON — удобный для чтения и обработки.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>REST</code> — это официант, который знает, как приносить блюда по заказу, заменять их или убирать, используя понятные команды.</p>
-<p><strong>Пример запроса GET (получить информацию о пользователе):</strong></p>
-<pre><code class="language-json">GET /users/123 HTTP/1.1
-Host: api.example.com
-Accept: application/json
-</code></pre>
-<p><strong>Пример ответа:</strong></p>
-<pre><code class="language-json">{
-  &quot;id&quot;: 123,
-  &quot;name&quot;: &quot;Иван&quot;,
-  &quot;email&quot;: &quot;ivan@example.com&quot;
-}
-</code></pre>
-<p><strong>Пример запроса POST (создать нового пользователя):</strong></p>
-<pre><code class="language-json">POST /users HTTP/1.1
-Host: api.example.com
-Content-Type: application/json
-
-{
-  &quot;name&quot;: &quot;Ольга&quot;,
-  &quot;email&quot;: &quot;olga@example.com&quot;
-}
-</code></pre>
-<p><strong>Пример ответа:</strong></p>
-<pre><code class="language-json">{
-  &quot;id&quot;: 124,
-  &quot;name&quot;: &quot;Ольга&quot;,
-  &quot;email&quot;: &quot;olga@example.com&quot;
-}
-</code></pre>
-<ol>
-<li>
-<p><strong>SOAP (Simple Object Access Protocol)</strong>:</p>
-<ul>
-<li>
-<p>Более старый и строгий стандарт обмена сообщениями между программами.</p>
-</li>
-<li>
-<p>Использует XML для передачи данных — сложнее читать и писать.</p>
-</li>
-<li>
-<p>Очень формален: описывает, какие операции доступны и как их вызывать.</p>
-</li>
-<li>
-<p>Часто применяется в корпоративных и банковских системах.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Пример SOAP-запроса (получить информацию о пользователе):</strong></p>
-<pre><code class="language-xml">&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt;
-  &lt;soap:Body&gt;
-    &lt;GetUserDetails xmlns=&quot;http://example.com/&quot;&gt;
-      &lt;UserId&gt;123&lt;/UserId&gt;
-    &lt;/GetUserDetails&gt;
-  &lt;/soap:Body&gt;
-&lt;/soap:Envelope&gt;    
-</code></pre>
-<p><strong>Пример SOAP-ответа:</strong></p>
-<pre><code class="language-xml">&lt;soap:Envelope xmlns:soap=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt;
-  &lt;soap:Body&gt;
-    &lt;GetUserDetailsResponse xmlns=&quot;http://example.com/&quot;&gt;
-      &lt;User&gt;
-        &lt;Id&gt;123&lt;/Id&gt;
-        &lt;Name&gt;Иван&lt;/Name&gt;
-        &lt;Email&gt;ivan@example.com&lt;/Email&gt;
-      &lt;/User&gt;
-    &lt;/GetUserDetailsResponse&gt;
-  &lt;/soap:Body&gt;
-&lt;/soap:Envelope&gt;
-</code></pre>
-<p><strong>Аналогия с рестораном</strong>:
-<code>SOAP</code> — официант, который работает по очень точным инструкциям и протоколам, где каждая фраза и действие строго регламентированы.</p>
-<ol>
-<li>
-<p><strong>GraphQL</strong>:</p>
-<ul>
-<li>
-<p>Современный и гибкий способ общения с <code>API</code>, разработанный <code>Facebook</code>.</p>
-</li>
-<li>
-<p>Позволяет клиенту точно указать, какие данные ему нужны, и получать только их.</p>
-</li>
-<li>
-<p>Можно делать один запрос, который заменяет несколько запросов в <code>REST</code>.</p>
-</li>
-<li>
-<p>Подходит, когда данные сложные и имеют много связей.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>GraphQL</code> — это официант, который внимательно слушает твой заказ и приносит только те блюда и ингредиенты, которые ты попросил, без лишнего.</p>
-<p><strong>Пример запроса GraphQL:</strong></p>
-<pre><code class="language-graphql">{
-  user(id: &quot;123&quot;) {
-    name
-    email
-    orders {
-      id
-      total
-    }
-  }
-}
-</code></pre>
-<p><strong>Пример ответа:</strong></p>
-<pre><code class="language-json">{
-  &quot;data&quot;: {
-    &quot;user&quot;: {
-      &quot;name&quot;: &quot;Иван&quot;,
-      &quot;email&quot;: &quot;ivan@example.com&quot;,
-      &quot;orders&quot;: [
-        { &quot;id&quot;: &quot;1&quot;, &quot;total&quot;: 100 },
-        { &quot;id&quot;: &quot;2&quot;, &quot;total&quot;: 150 }
-      ]
-    }
-  }
-}
-</code></pre>
-<ol>
-<li>
-<p><strong>WebSocket API</strong>:</p>
-<ul>
-<li>
-<p>Позволяет установить постоянное двунаправленное соединение между клиентом и сервером.</p>
-</li>
-<li>
-<p>Используется для приложений в реальном времени: чаты, игры, торговые площадки.</p>
-</li>
-<li>
-<p>Отличается от <code>REST</code> и <code>SOAP</code> тем, что данные идут постоянно, а не по отдельным запросам.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Аналогия с рестораном</strong>:
-<code>WebSocket</code> — это официант, который постоянно рядом с тобой, готов слушать и приносить блюда сразу, как только ты попросишь, без повторных звонков.</p>
+            <h2 id="api">⚠️ Типичные ошибки в API и как их находить</h2>
+<h3 id="1-">1. Неверные статус-коды</h3>
+<p><strong>Проблема:</strong><br />
+API возвращает неправильный HTTP-статус (например, <code>200 OK</code> при ошибке, или <code>500</code> при ошибке клиента).  </p>
+<p><strong>Как находить:</strong><br />
+- Сравни статус-код с ожидаемым по документации.<br />
+- Проверяй с помощью Postman, curl или автотестов.<br />
+- Примеры:
+  - ❌ 200 вместо 404 при запросе несуществующего ресурса.
+  - ❌ 500 вместо 400 при некорректных данных.</p>
+<hr />
+<h3 id="2">2. Несоответствие формата данных</h3>
+<p><strong>Проблема:</strong><br />
+Ответ не в том формате (ожидаешь JSON, а приходит HTML или текст).  </p>
+<p><strong>Как находить:</strong><br />
+- Проверяй заголовок <code>Content-Type</code>.<br />
+- Валидируй JSON через <code>jsonlint.com</code> или встроенные проверки в тестах.</p>
+<hr />
+<h3 id="3">3. Пропавшие или лишние поля</h3>
+<p><strong>Проблема:</strong><br />
+В ответе нет обязательных полей или появляются неожиданные.  </p>
+<p><strong>Как находить:</strong><br />
+- Сверяй ответ с API-документацией.<br />
+- Пиши тесты, которые проверяют наличие и тип данных каждого поля.</p>
+<hr />
+<h3 id="4">4. Некорректные типы данных</h3>
+<p><strong>Проблема:</strong><br />
+Поле <code>price</code> приходит как строка <code>"100"</code> вместо числа <code>100</code>.  </p>
+<p><strong>Как находить:</strong><br />
+- Проверяй типы данных (JSON Schema, автотесты).<br />
+- Обрати внимание на даты и булевы значения.</p>
+<hr />
+<h3 id="5">5. Логические ошибки в данных</h3>
+<p><strong>Проблема:</strong><br />
+Данные есть, но они неверные:
+- Цена товара отрицательная.
+- Дата доставки в прошлом.
+- ID пользователя не совпадает с запрошенным.</p>
+<p><strong>Как находить:</strong><br />
+- Сравнивай ответы с ожидаемым результатом.<br />
+- Добавляй проверки бизнес-логики в тесты.</p>
+<hr />
+<h3 id="6">6. Медленные ответы</h3>
+<p><strong>Проблема:</strong><br />
+Запрос обрабатывается слишком долго (&gt; 1–2 секунд для простых операций).  </p>
+<p><strong>Как находить:</strong><br />
+- Меряй время ответа в Postman, curl или JMeter.<br />
+- Смотри, есть ли просадки при большом количестве запросов.</p>
+<hr />
+<h3 id="7">7. Ошибки безопасности</h3>
+<p><strong>Проблема:</strong><br />
+- Можно получить чужие данные.
+- В ответе есть пароли или токены.
+- API не проверяет авторизацию.</p>
+<p><strong>Как находить:</strong><br />
+- Пробуй запросы без авторизации или с неверным токеном.<br />
+- Проверь, что приватные поля не возвращаются.<br />
+- Ищи в ответах служебную информацию.</p>
+<hr />
+<h3 id="8">8. Необработанные ошибки</h3>
+<p><strong>Проблема:</strong><br />
+При сбое API возвращает пустой ответ или технический текст вместо понятного JSON-ответа об ошибке.  </p>
+<p><strong>Как находить:</strong><br />
+- Ломай запросы специально (неверные параметры, метод).<br />
+- Проверяй, что в ответе есть структура ошибки (код, сообщение).</p>
         </div>
       
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 00:36:15.156389+00:00
+  Docs Build Date UTC : 2025-08-15 00:36:15.151988+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
