@@ -541,13 +541,15 @@
 <p><strong>Сценарий: тест регистрации пользователя</strong></p>
 <ol>
 <li>Открываем метод <code>POST /users/register</code>.</li>
-<li>Читаем описание и схему запроса:
-   <code>json
-   {
-     "name": "string",
-     "email": "string",
-     "password": "string"
-   }</code></li>
+<li>Читаем описание и схему запроса:</li>
+</ol>
+<pre><code class="language-json">   {
+     &quot;name&quot;: &quot;string&quot;,
+     &quot;email&quot;: &quot;string&quot;,
+     &quot;password&quot;: &quot;string&quot;
+   }
+</code></pre>
+<ol>
 <li>
 <p>Запускаем <code>Try it out</code> → вводим валидные данные.</p>
 </li>
@@ -596,7 +598,7 @@
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 00:59:50.704228+00:00
+  Docs Build Date UTC : 2025-08-15 01:01:53.561835+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
