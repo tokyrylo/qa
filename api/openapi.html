@@ -11,9 +11,9 @@
         
         
         
-        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/api-structure.html">
+        <link rel="canonical" href="https://tokyrylo.github.io/qa/api/openapi.html">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Структура запроса в API - Manual QA docs</title>
+        <title>Документация API в OpenAPI/Swagger - Manual QA docs</title>
         <link rel="stylesheet" href="../css/theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css">
         <script src="../js/theme.js" defer></script>
@@ -218,7 +218,7 @@
 
 -->
 
-<li class="active">
+<li >
     <a href="api-structure.html">Структура запроса в API</a>
 </li>
 
@@ -287,7 +287,7 @@
 
 -->
 
-<li >
+<li class="active">
     <a href="openapi.html">Документация API в OpenAPI/Swagger</a>
 </li>
 
@@ -444,7 +444,15 @@
           <h2>Table Of Contents</h2>
           <ul id="toc" class="current">
             
-              <li><a href="#api">Структура запроса и ответа в API</a></li>
+              <li><a href="#api-openapi-swagger-qa">📄 Документация API в OpenAPI / Swagger (глазами QA)</a></li>
+              
+                  <li class="child"><a href="#qa-swagger">🎯 Цели QA при работе со Swagger</a></li>
+              
+                  <li class="child"><a href="#swagger-qa">🔍 Структура документации Swagger глазами QA</a></li>
+              
+                  <li class="child"><a href="#-qa-swagger-ui">🧪 Чек-лист QA для работы со Swagger UI</a></li>
+              
+                  <li class="child"><a href="#qa-swagger-ui">🧩 Пример работы QA со Swagger UI</a></li>
               
             
         </ul>
@@ -464,7 +472,7 @@
         </div>
          <div class="next">
           
-        <a href="api-params.html" title="Параметры запроса в API"/>Next Page &#8594;</a>
+        <a href="api-errors.html" title="Типичные ошибки в API и как их находить"/>Next Page &#8594;</a>
           
         </div>
       
@@ -473,151 +481,114 @@
 
       
         <div id="body">
-            <h1 id="api">Структура запроса и ответа в API</h1>
-<p>Когда ты работаешь с <code>API</code>, каждый запрос и ответ имеет определённую структуру. Понимать, из чего они состоят — очень важно для тестирования и разработки.</p>
-<p><strong>Структура HTTP-запроса</strong></p>
+            <h1 id="api-openapi-swagger-qa">📄 Документация API в OpenAPI / Swagger (глазами QA)</h1>
+<p><strong>Swagger</strong> (OpenAPI Specification) — это интерактивная документация для API, которая позволяет тестировщику:
+- быстро понять, какие методы есть в API,
+- узнать, какие данные они принимают и возвращают,
+- тестировать API прямо из браузера без Postman или Insomnia.</p>
+<h2 id="qa-swagger">🎯 Цели QA при работе со Swagger</h2>
 <ol>
+<li><strong>Проверить полноту документации</strong>:</li>
+<li>Все ли эндпоинты задокументированы?</li>
+<li>Совпадают ли описания с фактическим поведением API?</li>
 <li>
-<p><strong>Метод (Method)</strong>:</p>
+<p>Есть ли примеры запросов и ответов?</p>
+</li>
+<li>
+<p><strong>Проверить соответствие спецификации и реализации</strong>:</p>
+</li>
+<li>Типы данных (<code>string</code>, <code>integer</code>, <code>boolean</code>) совпадают?</li>
+<li>Обязательные поля (<code>required</code>) действительно обязательны?</li>
+<li>
+<p>Описанные коды ошибок реально возвращаются?</p>
+</li>
+<li>
+<p><strong>Найти несоответствия и баги</strong>:</p>
+</li>
+<li>Метод описан как <code>GET</code>, а по факту изменяет данные (нарушение REST).</li>
+<li>В описании указано поле, которое сервер не возвращает.</li>
+<li>Нет описания для кодов ошибок (<code>400</code>, <code>401</code>, <code>500</code>).</li>
+</ol>
+<hr />
+<h2 id="swagger-qa">🔍 Структура документации Swagger глазами QA</h2>
 <ul>
-<li>
-<p>Определяет действие, которое ты хочешь сделать с ресурсом.</p>
-</li>
-<li>
-<p>Примеры: <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code>.</p>
-</li>
+<li><strong>Метод и путь</strong> (<code>GET /users/{id}</code>)</li>
+<li><strong>Описание</strong> — должно объяснять назначение метода.</li>
+<li><strong>Параметры</strong>:</li>
+<li><strong>Path</strong> — обязателен ли <code>id</code>?</li>
+<li><strong>Query</strong> — фильтры, сортировка.</li>
+<li><strong>Body</strong> — формат JSON, обязательные поля.</li>
+<li><strong>Коды ответов</strong>:</li>
+<li>Указаны ли все возможные (<code>200</code>, <code>400</code>, <code>401</code>, <code>404</code>, <code>500</code>)?</li>
+<li><strong>Примеры</strong>:</li>
+<li>Есть ли корректный пример запроса и ответа?</li>
 </ul>
-</li>
-<li>
-<p><strong>URL (Uniform Resource Locator)</strong>:</p>
+<hr />
+<h2 id="-qa-swagger-ui">🧪 Чек-лист QA для работы со Swagger UI</h2>
 <ul>
-<li>
-<p>Адрес ресурса, к которому обращается запрос.</p>
-</li>
-<li>
-<p>Например:</p>
-</li>
+<li>[ ] Открыть <code>/swagger</code> или <code>/docs</code> и проверить наличие всех методов.</li>
+<li>[ ] Для каждого метода выполнить тест через <strong>Try it out</strong>:</li>
+<li>[ ] Корректный запрос → ожидаемый <code>2xx</code> ответ.</li>
+<li>[ ] Некорректные параметры → соответствующий <code>4xx</code> ответ.</li>
+<li>[ ] Отсутствие авторизации → <code>401 Unauthorized</code>.</li>
+<li>[ ] Сверить схему <code>request/response</code> в Swagger с реальными данными.</li>
+<li>[ ] Проверить, что примеры в документации рабочие (копируются и дают результат).</li>
+<li>[ ] Убедиться, что описаны все обязательные параметры.</li>
+<li>[ ] Проверить, что указаны коды ошибок и их описание.</li>
 </ul>
+<hr />
+<h2 id="qa-swagger-ui">🧩 Пример работы QA со Swagger UI</h2>
+<p><strong>Сценарий: тест регистрации пользователя</strong></p>
+<ol>
+<li>Открываем метод <code>POST /users/register</code>.</li>
+<li>Читаем описание и схему запроса:
+   <code>json
+   {
+     "name": "string",
+     "email": "string",
+     "password": "string"
+   }</code></li>
+<li>
+<p>Запускаем <code>Try it out</code> → вводим валидные данные.</p>
+</li>
+<li>
+<p>Проверяем ответ:</p>
+</li>
+<li>
+<p>Код <code>201 Created</code></p>
+</li>
+<li>
+<p><code>JSON</code> содержит <code>id</code>, <code>name</code>, <code>email</code>.</p>
+</li>
+<li>
+<p>Отправляем запрос без <code>email</code> → ожидаем <code>400 Bad Request</code>.</p>
+</li>
+<li>
+<p>Сравниваем с описанием в Swagger:</p>
+</li>
+<li>
+<p>Если ошибка есть, но в документации нет — это баг в документации.</p>
 </li>
 </ol>
-<pre><code>    https://api.example.com/users/123
-</code></pre>
-<ol>
-<li>
-<p><strong>Заголовки (Headers)</strong>:</p>
+<p><strong>⚠️ Типичные ошибки, которые находит QA через Swagger</strong></p>
 <ul>
 <li>
-<p>Дополнительная информация о запросе.</p>
+<p>Несоответствие типов данных (например, <code>id</code> описан как <code>integer</code>, но приходит как <code>string</code>).</p>
 </li>
 <li>
-<p>Например: формат данных (<code>Content-Type</code>), язык (<code>Accept-Language</code>), токены авторизации и т.д.</p>
+<p>Нет описания обязательных полей.</p>
 </li>
 <li>
-<p><strong>Пример</strong>:</p>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>    Content-Type: application/json
-    Authorization: Bearer &lt;токен&gt;
-</code></pre>
-<ol>
-<li>
-<p><strong>Тело запроса (Body)</strong>:</p>
-<ul>
-<li>
-<p>Данные, которые отправляются на сервер (если нужно).</p>
+<p>Отсутствуют коды ошибок в документации.</p>
 </li>
 <li>
-<p>Используется, например, в <code>POST</code>, <code>PUT</code>, <code>PATCH</code>.</p>
+<p>Пример запроса/ответа не соответствует реальному.</p>
 </li>
 <li>
-<p>Обычно в формате <code>JSON</code>, <code>XML</code> или <code>form-data</code>.</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Структура HTTP-ответа</strong>
-1. <strong>Код состояния (Status code)</strong>:</p>
-<ul>
-<li>
-<p>Числовой код, который говорит, успешно ли выполнен запрос.</p>
+<p>Эндпоинт работает, но в <code>Swagger</code> его нет.</p>
 </li>
 <li>
-<p>Примеры:</p>
-<ul>
-<li>
-<p><code>200 OK</code> — всё хорошо, данные вернулись</p>
-</li>
-<li>
-<p><code>201 Created</code> — ресурс успешно создан</p>
-</li>
-<li>
-<p><code>400 Bad Request</code> — ошибка в запросе</p>
-</li>
-<li>
-<p><code>401 Unauthorized</code> — нет доступа (нужно авторизоваться)</p>
-</li>
-<li>
-<p><code>500 Internal Server Error</code> — ошибка на сервере</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Заголовки ответа (Headers)</strong>:</p>
-<ul>
-<li>
-<p>Информация о данных, которые вернул сервер.</p>
-</li>
-<li>
-<p>Например: тип данных (<code>Content-Type</code>), длина содержимого (<code>Content-Length</code>), дата и т.д.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Тело ответа (Body)</strong>:</p>
-<ul>
-<li>
-<p>Основные данные, которые возвращает сервер.</p>
-</li>
-<li>
-<p>Например, <code>JSON</code> с информацией о пользователе, ошибке и т.п.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Пример простого запроса и ответа</strong></p>
-<p><strong>Запрос</strong></p>
-<pre><code class="language-json">POST /users HTTP/1.1
-Host: api.example.com
-Content-Type: application/json
-Authorization: Bearer abc123
-
-{
-  &quot;name&quot;: &quot;Иван&quot;,
-  &quot;email&quot;: &quot;ivan@example.com&quot;
-}
-</code></pre>
-<p><strong>Ответ</strong></p>
-<pre><code class="language-json">HTTP/1.1 201 Created
-Content-Type: application/json
-
-{
-  &quot;id&quot;: 123,
-  &quot;name&quot;: &quot;Иван&quot;,
-  &quot;email&quot;: &quot;ivan@example.com&quot;
-}
-</code></pre>
-<p><strong>Почему важно знать структуру?</strong>:</p>
-<ul>
-<li>
-<p>Чтобы понимать, что и куда отправлять.</p>
-</li>
-<li>
-<p>Чтобы проверять, правильно ли сервер реагирует на запросы.</p>
-</li>
-<li>
-<p>Чтобы грамотно писать тесты и находить ошибки.</p>
+<p>В <code>Swagger</code> указана одна структура <code>JSON</code>, а сервер возвращает другую.</p>
 </li>
 </ul>
         </div>
@@ -625,7 +596,7 @@ Content-Type: application/json
       <hr/>
   <!--
   MkDocs version      : 1.6.1
-  Docs Build Date UTC : 2025-08-15 00:57:55.470330+00:00
+  Docs Build Date UTC : 2025-08-15 00:57:55.472800+00:00
   -->
 </div>
 <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
